@@ -1,0 +1,5 @@
+# Build and test
+.coverage
+build
+htmlcov
+iiif_prezi.egg-info
