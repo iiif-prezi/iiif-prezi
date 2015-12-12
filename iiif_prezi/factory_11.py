@@ -4,12 +4,7 @@ import os, sys
 import commands
 import urllib
 
-sys.path.append(os.getcwd())
-try:
-	import ljson as json
-except:
-	print "Falling back to regular json"
-	import json
+from iiif_prezi.json_with_order import json, OrderedDict
 
 try:
 	from PIL import Image as pil_image

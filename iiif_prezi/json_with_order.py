@@ -8,7 +8,7 @@ For use in other iiif_prezi modules as:
 try:
     import json
 except:
-    # 2.5 -- FIXME/zimeon - do we care about 2.5 now?
+    # Fallback for 2.5
     import simplejson as json
 
 try:

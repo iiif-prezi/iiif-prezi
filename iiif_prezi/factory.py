@@ -4,24 +4,7 @@ import os, sys
 import commands
 import urllib2
 
-try:
-	import json
-except:
-	# 2.5 -- FIXME/zimeon - do we care about 2.5 now?
-	import simplejson as json
-
-try:
-	# Only available in 2.7
-	# This makes the code a bit messy, but eliminates the need
-	# for the locally hacked ordered json encoder
-	from collections import OrderedDict
-except:
-	# Backported...
-	try:
-		from ordereddict import OrderedDict
-	except:
-		print "You must: easy_install ordereddict"
-		raise
+from iiif_prezi.json_with_order import json, OrderedDict
 
 try:
 	from PIL import Image as pil_image
@@ -112,6 +95,8 @@ class ManifestFactory(object):
 		mddir: (string) Directory where metadata files will be written
 		lang: (string) Language code to use by default if multiple languages given
 		"""
+		self.default_base_image_uri = ""
+		self.default_base_image_dir = ""
 		if mdbase:
 			self.set_base_metadata_uri(mdbase)
 		if imgbase:
@@ -142,9 +127,6 @@ class ManifestFactory(object):
 		self.default_image_api_uri = ""
 		self.default_image_api_dir = ""
 		self.image_auth_token = ""
-
-		self.default_base_image_uri = "" #FIXME/zimeon - overrides imgbase param
-		self.default_base_image_dir = ""
 
 		self.debug_level = "warn"
 		self.log_stream = sys.stdout
@@ -701,7 +683,6 @@ class BaseMetadataObject(object):
 			raise StructuralError("%s['%s'] objects must be of type %s, got %s" % (self._type, prop, typ._type, instance.get('@type', None)), self)
 		else:
 			raise StructuralError("Saw unknown object in %s['%s']: %r" % (self._type, prop, instance), self)
-
 
 	def _buildString(self, js, compact=True):
 		"""Build string from JSON."""

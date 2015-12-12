@@ -3,25 +3,13 @@
 from iiif_prezi.factory import ManifestFactory, Service
 from iiif_prezi.factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
 import StringIO
-import json
+
+from iiif_prezi.json_with_order import json, OrderedDict
 
 try:
 	from pyld import jsonld
 except:
 	jsonld = None
-
-try:
-	# Only available in 2.7+
-	# This makes the code a bit messy, but eliminates the need
-	# for the locally hacked ordered json encoder
-	from collections import OrderedDict
-except:
-	# Backported...
-	try:
-		from ordereddict import OrderedDict
-	except:
-		print "You must: easy_install ordereddict"
-		raise
 
 class SerializationError(PresentationError):
 	"""Errors found while loading IIIF resource."""
