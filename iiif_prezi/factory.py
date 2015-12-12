@@ -1,10 +1,25 @@
 """IIIF Presentation API Manifest Factory."""
 
 import os, sys
-import commands
-import urllib2
 
 from iiif_prezi.json_with_order import json, OrderedDict
+
+try:
+    # python3
+    from urllib.request import urlopen
+    from urllib.request import Request
+    from urllib.parse import urlencode
+except ImportError:
+    # fall back to python2
+    from urllib2 import urlopen
+    from urllib2 import Request
+    from urllib import urlencode
+
+try:
+	import commands
+except:
+	# 3.x
+	pass #FIXME/zimeon - what is best replacement?
 
 try:
 	from PIL import Image as pil_image
@@ -421,7 +436,7 @@ class BaseMetadataObject(object):
 					return False
 			return True
 		else:
-			print "expecing a resource, got: %r" % data
+			print("expecing a resource, got: %r" % (data))
 			return True
 
 
@@ -430,7 +445,7 @@ class BaseMetadataObject(object):
 		if etree:
 			try:
 				dom = etree.XML(data)
-			except Exception, e:
+			except Exception as e:
 				raise DataError("Invalid XHTML in '%s':  %s" % (data, e), self)
 			for elm in dom.iter():
 				if elm.tag in BAD_HTML_TAGS:
@@ -725,9 +740,9 @@ class BaseMetadataObject(object):
 			mydir = os.path.join(mdd, '/'.join(bits[:-1]))		
 			try:
 				os.makedirs(mydir)
-			except OSError, e:
+			except OSError:
 				pass
-		fh = file(os.path.join(mdd, fp), 'w')
+		fh = open(os.path.join(mdd, fp), 'w')
 		out = self._buildString(js, compact)
 		fh.write(out)
 		fh.close()
@@ -1186,10 +1201,10 @@ class Image(ContentResource):
 		requrl = self._factory.default_base_image_uri + "/" + self._identifier + '/info.json';
 		try:
 			if self._factory.image_auth_token:
-				req = urllib2.Request(requrl, headers={'Authorization': self._factory.image_auth_token})
+				req = Request(requrl, headers={'Authorization': self._factory.image_auth_token})
 			else:
-				req = urllib2.Request(requrl)
-			fh = urllib2.urlopen(req)
+				req = Request(requrl)
+			fh = urlopen(req)
 			data = fh.read()
 			fh.close()
 		except:
@@ -1200,7 +1215,7 @@ class Image(ContentResource):
 			self.height = int(js['height'])
 			self.width = int(js['width'])
 		except:
-			print data
+			print(data)
 			raise ConfigurationError("Response from IIIF server did not have mandatory height/width")
 
 	def set_hw_from_file(self, fn):
@@ -1496,4 +1511,4 @@ if __name__ == "__main__":
 		img2 = factory.image("f1r", iiif=True)
 		chc = anno.choice(img, [img2])
 
-	print mf.toString(compact=False)
+	print(mf.toString(compact=False))

@@ -1,10 +1,15 @@
 """IIIF Presentation API v1.1 Manifest Factory."""
 
 import os, sys
-import commands
 import urllib
 
 from iiif_prezi.json_with_order import json, OrderedDict
+
+try:
+	import commands
+except:
+	# 3.x
+	pass #FIXME/zimeon - what is best replacement?
 
 try:
 	from PIL import Image as pil_image
@@ -282,7 +287,7 @@ class BaseMetadataObject(object):
 		if self._factory.debug_level == "warn":
 			for e in self._warn:
 				if not d.has_key(e):
-					print "WARNING: Resource type '%s' should have '%s' set" % (self._type, e)
+					print("WARNING: Resource type '%s' should have '%s' set" % (self._type, e))
 		if top:
 			d['@context'] = self._factory.context_uri
 
@@ -325,10 +330,10 @@ class BaseMetadataObject(object):
 			mydir = os.path.join(mdd, '/'.join(bits[:-1]))		
 			try:
 				os.makedirs(mydir)
-			except OSError, e:
+			except OSError as e:
 				pass
 
-		fh = file(os.path.join(mdd, fp), 'w')
+		fh = open(os.path.join(mdd, fp), 'w')
 		if compact:
 			json.dump(js, fh, sort_keys=True, separators=(',',':'))
 		else:

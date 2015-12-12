@@ -21,6 +21,6 @@ except:
     try:
         from ordereddict import OrderedDict
     except:
-        print "You must: easy_install ordereddict"
-        raise
+        raise Exception("To run with old pythons you must: easy_install ordereddict")
+
 

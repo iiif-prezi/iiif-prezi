@@ -16,7 +16,7 @@ def print_warnings(reader):
     warns = reader.get_warnings()
     if warns:
         for m in warns:
-            print m[:-1]    
+            print(m[:-1]) 
 
 def do_test(data, excexp):
     debug_tests = 0
@@ -28,10 +28,10 @@ def do_test(data, excexp):
             js = what.toJSON()
             print_warnings(reader)
             return 1
-        except Exception, e:        
+        except Exception as e:        
             print_warnings(reader)
             if debug_tests:
-                print "%s:  %s" % (e.__class__.__name__, e)
+                print("%s:  %s" % (e.__class__.__name__, e))
             return 0
     else:
         # Should raise exception excexp
@@ -39,14 +39,14 @@ def do_test(data, excexp):
             what = reader.read()
             js = what.toJSON()
             if debug_tests:
-                print "Loaded okay, should have failed"
-                print json.dumps(js, sort_keys=True, indent=2)
+                print("Loaded okay, should have failed")
+                print(json.dumps(js, sort_keys=True, indent=2))
             print_warnings(reader)
             return "no exception"
-        except excexp, e:
+        except excexp as e:
             # Got expected exception
             return None
-        except Exception, e:
+        except Exception as e:
             # Not the exception we expected
             return "bad exception, got %s (%s)" % (e.__class__,str(e))
 
@@ -54,7 +54,7 @@ def error(num):
     # Load error manifest number num
     mfid = "http://iiif.io/api/presentation/2.0/example/errors/%d/manifest.json" % (num)
     fn = mfid.replace('http://iiif.io/api/presentation/', 'tests/testdata/' )
-    fh = file(fn)
+    fh = open(fn)
     data = fh.read()
     fh.close()
     reader = ManifestReader(data)
@@ -66,7 +66,7 @@ class TestAll(unittest.TestCase):
 
     def test01_fixtures(self):
         top = 'tests/testdata/2.0/example/fixtures/collection.json'
-        fh = file(top)
+        fh = open(top)
         data = fh.read()
         fh.close()
 
@@ -76,10 +76,10 @@ class TestAll(unittest.TestCase):
         for manifest in ncoll.manifests:
             mfid = manifest.id
             fn = mfid.replace('http://iiif.io/api/presentation/', 'tests/testdata/')
-            fh = file(fn)
+            fh = open(fn)
             data = fh.read()
             fh.close()
-            #print "Manifest: %s" % mfid 
+            #print("Manifest: %s" % mfid)
             diff = ''
             js2 = ''
             try:
@@ -94,7 +94,7 @@ class TestAll(unittest.TestCase):
                     diff += "- is in, + is out"
                     for x in difflib.unified_diff(data.split('\n'), data2.split('\n')):
                         diff += x
-            except Exception, e:
+            except Exception as e:
                 diff = "Read failed with exception: %s" % (str(e))
             self.assertEqual( js, js2, "Manifest %s: %s" % (mfid,diff) )
 

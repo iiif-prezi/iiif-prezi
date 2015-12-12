@@ -2,9 +2,14 @@
 
 from iiif_prezi.factory import ManifestFactory, Service
 from iiif_prezi.factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
-import StringIO
-
 from iiif_prezi.json_with_order import json, OrderedDict
+
+try: #python2
+    # Must try this first as io also exists in python2
+    # but in the wrong one!
+    import StringIO as io
+except ImportError: #python3
+    import io
 
 try:
 	from pyld import jsonld
@@ -29,7 +34,7 @@ def load_document_local(url):
 		fn = "contexts/context_20.json"
 	else:
 		fn = "contexts/context_10.json"
-	fh = file(fn)
+	fh = open(fn)
 	data = fh.read()
 	fh.close()
 	doc['document'] = data;
@@ -62,7 +67,7 @@ class ManifestReader(object):
 			fac = ManifestFactory(version=self.require_version)
 		else:
 			fac = ManifestFactory(version=version)
-		self.debug_stream = StringIO.StringIO()
+		self.debug_stream = io.StringIO()
 		fac.set_debug("warn")
 		fac.set_debug_stream(self.debug_stream)
 		return fac
@@ -72,7 +77,7 @@ class ManifestReader(object):
 
 		Throws a SerializationError if there is no @context
 		"""
-		if not js.has_key('@context'):
+		if ('@context' not in js):
 			raise SerializationError('Top level resource MUST have @context', js)
 		ctx = js['@context']
 		try:
@@ -119,7 +124,7 @@ class ManifestReader(object):
 		if jsonld:
 			try:
 				jsonld.expand(js)
-			except Exception, e:
+			except Exception as e:
 				raise
 				raise SerializationError("Data is not valid JSON-LD: %r" % e, data)
 		return top

@@ -30,7 +30,7 @@ def test_remote():
 			reader = ManifestReader(data)
 			nmfst = reader.read()
 			js = nmfst.toJSON()
-		except Exception, e:
+		except Exception as e:
 			print("   => %s: %s" % (e.__class__.__name__, e))
 
 if __name__ == "__main__":
