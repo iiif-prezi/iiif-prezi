@@ -1,5 +1,6 @@
+"""iiif-prezi example code to build a manifest"""
 
-from factory import ManifestFactory
+from iiif_prezi.factory import ManifestFactory
 
 imageWidth = 693
 imageHeight = 786
@@ -42,7 +43,9 @@ rng = mf.range(ident="rng-1", label="Example Range")
 rng.add_canvas(seq.canvases[1])
 rng.add_canvas(seq.canvases[2], "#xywh=10,10,100,100")
 
-
 # Serialize 
 js = mf.toString(compact=False)
+
+# ...for demo
+print(js)
 

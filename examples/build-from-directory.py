@@ -1,24 +1,26 @@
+"""iiif-prezi example code to build a manifest from a directory of images
 
-from factory import ManifestFactory
+"""
+
+from iiif_prezi.factory import ManifestFactory
 import os
 
-# Example script to build a manifest out of all the images in a directory
-
-destdir = "/path/to/images"
+image_dir = "/path/to/images"
+prezi_dir = "/tmp"
 
 fac = ManifestFactory()
 fac.set_debug("error")
 fac.set_base_image_uri("http://localhost/iiif")
-fac.set_base_image_dir(destdir)
+fac.set_base_image_dir(image_dir)
 fac.set_iiif_image_info()
 fac.set_base_metadata_uri("http://localhost/prezi/")
-fac.set_base_metadata_dir("/path/to/prezi/")
+fac.set_base_metadata_dir(prezi_dir)
 
-mflbl = os.path.split(destdir)[1].replace("_", " ").title()
+mflbl = os.path.split(image_dir)[1].replace("_", " ").title()
 
 mfst = fac.manifest(label=mflbl)
 seq = mfst.sequence()
-for fn in os.listdir(destdir):
+for fn in os.listdir(image_dir):
 	ident = fn[:-4]
 	title = ident.replace("_", " ").title()
 	cvs = seq.canvas(ident=ident, label=title)

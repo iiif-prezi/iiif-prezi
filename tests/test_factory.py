@@ -12,7 +12,7 @@ class TestAll(unittest.TestCase):
         # simple instance variable sets
         mf = ManifestFactory( mdbase="aa", imgbase="bb", mddir="tests" )
         self.assertEqual( mf.metadata_base, 'aa/' )
-        self.assertEqual( mf.default_base_image_uri, '' ) #imgbase gets overridden, odd!
+        self.assertEqual( mf.default_base_image_uri, 'bb' )
         self.assertEqual( mf.metadata_dir, 'tests/' )
         # language setting
         mf = ManifestFactory(lang='cy')

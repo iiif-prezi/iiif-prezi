@@ -42,13 +42,13 @@ setup(
     name='iiif-prezi',
     version=version,
     author='Rob Sanderson',
-    author_email='simeon.warner@cornell.edu',
     packages=['iiif_prezi'],
     classifiers=["Development Status :: 4 - Beta",
                  "Intended Audience :: Developers",
-                 #"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+                 "License :: OSI Approved :: Apache Software License",
                  "Operating System :: OS Independent", #is this true? know Linux & OS X ok
                  "Programming Language :: Python",
+                 "Programming Language :: Python :: 2.5",
                  "Programming Language :: Python :: 2.6",
                  "Programming Language :: Python :: 2.7",
                  "Programming Language :: Python :: 3.3",
@@ -58,7 +58,7 @@ setup(
                  "Topic :: Software Development :: Libraries :: Python Modules",
                  "Environment :: Web Environment"],
     url='https://github.com/IIIF/presentation-api/implementations/manifest-factory',
-    #license='LICENSE.txt',
+    license='LICENSE.md',
     description='IIIF Presentation API implementation',
     long_description=open('README').read(),
     install_requires=[
@@ -68,8 +68,7 @@ setup(
     ],
     test_suite="tests",
     tests_require=[
-        "testfixtures",
-        "difflib"
+        "testfixtures"
     ],
     cmdclass={
         'coverage': Coverage,

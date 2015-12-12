@@ -963,7 +963,7 @@ class Canvas(ContentResource):
 			if imgid.startswith('http'):
 				# take only last segment
 				imgid = os.path.split(imgid)[1]
-			self.set_hw_from_file(imgid)
+			image.set_hw_from_file(imgid)
 		self.set_hw(image.height, image.width)
 		return anno
 
@@ -1203,7 +1203,6 @@ class Image(ContentResource):
 			print data
 			raise ConfigurationError("Response from IIIF server did not have mandatory height/width")
 
-
 	def set_hw_from_file(self, fn):
 		"""Set height and width from image file."""
 		# Try to do it automagically
@@ -1214,7 +1213,6 @@ class Image(ContentResource):
 				raise ValueError("Could not find image file: %s" % fn)
 			else:
 				fn = fn2
-
 		cmd = self._factory.whichid
 		if cmd:
 			# Try IM
@@ -1226,7 +1224,6 @@ class Image(ContentResource):
 				return
 			except:
 				pass
-
 		if pil_image:
 			# Try PIL
 			try:
@@ -1241,8 +1238,8 @@ class Image(ContentResource):
 				return
 			except:
 				pass
-
 		raise ConfigurationError("No identify from ImageMagick and no PIL, you have to set manually")
+
 
 class Choice(BaseMetadataObject):
 	"""Open Annotation Choice object."""

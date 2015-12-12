@@ -14,24 +14,24 @@ def test_remote():
 	 #"http://demos.biblissima-condorcet.fr/iiif/metadata/ark:/12148/btv1b84473026/manifest.json",
 	 #"http://demos.biblissima-condorcet.fr/iiif/metadata/ark:/12148/btv1b84473026/manifest-ranges.json",
 	 #"http://demos.biblissima-condorcet.fr/mirador/data/add_ms_10289_edited_8v-9r.json",
-	 "http://demos.biblissima-condorcet.fr/iiif/metadata/ark:/12148/btv1b8438674r/manifest.json",
-	 "http://demos.biblissima-condorcet.fr/iiif/metadata/BVH/B410186201_LI03/manifest.json"
-	 "http://sanddragon.bl.uk/IIIFMetadataService/add_ms_10289.json"
-	 "http://sr-svx-93.unifr.ch/metadata/iiif/bbb-0218/manifest.json"
-	 "http://www.shared-canvas.org/impl/demo1d/res/manifest.json"
+	 #"http://demos.biblissima-condorcet.fr/iiif/metadata/ark:/12148/btv1b8438674r/manifest.json",
+	 "http://demos.biblissima-condorcet.fr/iiif/metadata/BVH/B410186201_LI03/manifest.json",
+	 "http://sanddragon.bl.uk/IIIFMetadataService/add_ms_10289.json",
+	 "http://sr-svx-93.unifr.ch/metadata/iiif/bbb-0218/manifest.json",
+	 #"http://www.shared-canvas.org/impl/demo1d/res/manifest.json"
 	]
 	for u in urls:
 		fh = urllib.urlopen(u)
 		data = fh.read()
 		fh.close()
 		try:
-			print "------"
-			print u
+			print("------")
+			print(u)
 			reader = ManifestReader(data)
 			nmfst = reader.read()
 			js = nmfst.toJSON()
 		except Exception, e:
-			print "   => %s: %s" % (e.__class__.__name__, e)
+			print("   => %s: %s" % (e.__class__.__name__, e))
 
 if __name__ == "__main__":
     test_remote()
