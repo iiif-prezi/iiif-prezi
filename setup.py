@@ -1,6 +1,7 @@
 """Setup for IIIF Presentation API implementation."""
 from setuptools import setup, Command
 import os
+import sys
 # setuptools used instead of distutils.core so that 
 # dependencies can be handled automatically
 
@@ -38,6 +39,14 @@ class Coverage(Command):
         os.system("coverage html")
         print("See htmlcov/index.html for details.")
 
+install_requires=[
+    "lxml",
+    "Pillow",
+    "pyld",
+]
+if (sys.version_info[0:2] < (2,7)):
+    install_requires.append('ordereddict')
+
 setup(
     name='iiif-prezi',
     version=version,
@@ -61,11 +70,7 @@ setup(
     license='LICENSE.md',
     description='IIIF Presentation API implementation',
     long_description=open('README').read(),
-    install_requires=[
-        "lxml",
-        "Pillow",
-        "pyld",
-    ],
+    install_requires=install_requires,
     test_suite="tests",
     tests_require=[
         "testfixtures"
