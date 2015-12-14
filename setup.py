@@ -46,6 +46,7 @@ install_requires=[
 ]
 if (sys.version_info[0:2] < (2,7)):
     install_requires.append('ordereddict')
+    install_requires.append('future')
 
 setup(
     name='iiif-prezi',
