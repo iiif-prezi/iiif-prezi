@@ -7,6 +7,13 @@ import urllib
 from iiif_prezi.json_with_order import json, OrderedDict
 
 try:
+	subprocess.check_output #should be OK in python2.7 up
+except:
+	#python2.6, see <http://python-future.org/standard_library_imports.html>
+	from future.standard_library import install_aliases
+	install_aliases()
+
+try:
 	from PIL import Image as pil_image
 except:
 	try:
