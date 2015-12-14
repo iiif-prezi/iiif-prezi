@@ -6,6 +6,13 @@ import os, sys, subprocess
 from iiif_prezi.json_with_order import json, OrderedDict
 
 try:
+	subprocess.check_output #should be OK in py2.6 up
+except:
+	#py2.6, see <http://python-future.org/standard_library_imports.html>
+	from future.standard_library import install_aliases
+	install_aliases()
+
+try:
     # python3
     from urllib.request import urlopen
     from urllib.request import Request
