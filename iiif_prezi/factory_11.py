@@ -1,16 +1,10 @@
 """IIIF Presentation API v1.1 Manifest Factory."""
 
 from __future__ import unicode_literals
-import os, sys
+import os, sys, subprocess
 import urllib
 
 from iiif_prezi.json_with_order import json, OrderedDict
-
-try:
-	import commands
-except:
-	# 3.x
-	pass #FIXME/zimeon - what is best replacement?
 
 try:
 	from PIL import Image as pil_image
@@ -80,9 +74,9 @@ class ManifestFactory(object):
 
 		# Try to find ImageMagick's identify
 		try:
-			self.whichid = commands.getoutput('which identify')
+			self.whichid = subprocess.check_output('which identify', shell=True).strip()
 		except:
-			# No IM or not unix
+			# No ImageMagick or not unix
 			self.whichid = ""
 
 	def set_debug(self, typ):
@@ -814,9 +808,9 @@ class Image(ContentResource):
 
 		cmd = self._factory.whichid
 		if cmd:
-			# Try IM
+			# Try ImageMagick
 			try:
-				info = commands.getoutput(cmd + ' -ping -format "%h %w" ' + fn)
+				info = subprocess.check_output(cmd + ' -ping -format "%h %w" ' + fn, shell=True).strip()
 				(h, w) = info.split(" ")
 				self.height = int(h)
 				self.width = int(w)
