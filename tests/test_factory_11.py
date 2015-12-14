@@ -1,4 +1,5 @@
 """Test code for iiif_prezi.factory_11"""
+from __future__ import unicode_literals
 import unittest
 
 from iiif_prezi.factory_11 import ManifestFactory

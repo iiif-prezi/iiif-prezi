@@ -1,4 +1,5 @@
 """Test code for iiif_prezi.factory"""
+from __future__ import unicode_literals
 import unittest
 
 from iiif_prezi.factory import ManifestFactory, ConfigurationError
@@ -32,3 +33,4 @@ class TestAll(unittest.TestCase):
         self.assertEqual( img.set_hw_from_file('testimages/nci-vol-2303-72.jpg'), None )
         self.assertEqual( img.width, 648 )
         self.assertEqual( img.height, 432 )
+
