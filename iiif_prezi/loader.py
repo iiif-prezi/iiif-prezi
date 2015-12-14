@@ -1,5 +1,7 @@
 """IIIF Presentation API resource loader."""
 
+from __future__ import unicode_literals
+
 from iiif_prezi.factory import ManifestFactory, Service
 from iiif_prezi.factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
 from iiif_prezi.json_with_order import json, OrderedDict
@@ -15,6 +17,11 @@ try:
 	from pyld import jsonld
 except:
 	jsonld = None
+
+try:
+	STR_TYPES = [str, unicode] #Py2
+except:
+	STR_TYPES = [bytes, str] #Py3
 
 class SerializationError(PresentationError):
 	"""Errors found while loading IIIF resource."""
@@ -107,7 +114,11 @@ class ManifestReader(object):
 				js = json.loads(data)
 			except:
 				# could be badly encoded utf-8 with BOM
-				data = data.decode('utf-8')
+				try:
+					data = data.decode('utf-8')
+				except:
+					#Py3 does not have decode on str which is unicode already
+					pass	
 				if data[0] == u'\ufeff':
 					data = data[1:].strip()
 				try:
@@ -134,12 +145,12 @@ class ManifestReader(object):
 		"""Convert JSON-LD language into a dict of value indexed by language."""
 		# convert from @language/@value[/@type]
 		# to {lang[ type]: value}
-		if type(js) in [str, unicode]:
+		if type(js) in STR_TYPES:
 			return js
-		elif not js.has_key('@value'):
+		elif '@value' not in js:
 			raise DataError("Missing @value for string", js)
 		else:
-			if js.has_key('@language'):
+			if '@language' in js:
 				lh = {js['@language']:js['@value']}				
 			else:
 				lh = js['@value']
@@ -203,14 +214,14 @@ class ManifestReader(object):
 				raise				
 			try:
 				what = fullo.make_selection(js['selector'])
-				if js.has_key('style'):
+				if 'style' in js:
 					what.style = js['style']
 			except:
 				# no selector, so just style ... already past the annotation...
 				what = self.factory.specificResource(fullo)
 				what.style = js['style']
 			# need to explicitly set @id because we didn't call with a func(ident=)
-			if js.has_key("@id"):
+			if '@id' in js:
 				what.id = js['@id']
 			setattr(parent, parentProperty, what)
 			return what
@@ -234,8 +245,8 @@ class ManifestReader(object):
 
 		# Up front check for required properties in the INCOMING data
 		for req in what._required:
-			if not js.has_key(req):
-				if what._structure_properties.has_key(req):
+			if req not in js:
+				if req in what._structure_properties:
 					# If we're minimal in our parent, then allow missing structure
 					if parentProperty and parent._structure_properties.get(parentProperty, {}).get('minimal', False):
 						continue
@@ -249,19 +260,18 @@ class ManifestReader(object):
 				raise StructuralError("Second Sequence must not list canvases", what)
 
 		# Configure the object from JSON
-		kvs = js.items()
-		kvs.sort()
+		kvs = sorted(js.items())
 		for (k,v) in kvs:
 			# Recurse
-			if what._structure_properties.has_key(k):
+			if k in what._structure_properties:
 				if type(v) == list:
 					for sub in v:
 						if type(sub) in [dict, OrderedDict]:
 							subo = self.readObject(sub, what, k)
-						elif type(sub) in [str, unicode] and sub.startswith('http'):
+						elif type(sub) in STR_TYPES and sub.startswith('http'):
 							# pointer to a resource (eg canvas in structures)
 							# Use magic setter to ensure listiness
-							if what._structure_properties.has_key(k):
+							if k in what._structure_properties:
 								# super meta black magic
 								kls = what._structure_properties[k]['subclass'].__name__.lower()
 								addfn = getattr(what, "add_%s" % kls)
@@ -274,7 +284,7 @@ class ManifestReader(object):
 					raise StructuralError("%s['%s'] must be a list, got: %s" % (what._type, k, v), what)
 				elif type(v) in [dict, OrderedDict]:
 					subo = self.readObject(v, what, k)
-				elif type(v) in [str, unicode] and (v.startswith('http') or v.startswith('urn:') or v.startswith('_:')):
+				elif type(v) in STR_TYPES and (v.startswith('http') or v.startswith('urn:') or v.startswith('_:')):
 					setattr(what, k, v)
 				else:
 					raise StructuralError("%s['%s'] has broken value: %r" % (what._type, k, v), what )
@@ -326,7 +336,7 @@ class ManifestReader(object):
 						lh = self.jsonld_to_langhash(item)
 						nlist.append(lh)
 					kfn(nlist)
-				elif type(v) in [str, unicode]:
+				elif type(v) in STR_TYPES:
 					kfn(v)
 				elif type(v) == dict:
 					kfn(self.jsonld_to_langhash(v))

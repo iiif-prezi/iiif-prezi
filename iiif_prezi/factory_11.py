@@ -1,5 +1,6 @@
 """IIIF Presentation API v1.1 Manifest Factory."""
 
+from __future__ import unicode_literals
 import os, sys
 import urllib
 
@@ -18,6 +19,11 @@ except:
 		import Image as pil_image
 	except:
 		pil_image = None
+
+try:
+	STR_TYPES = [str, unicode] #Py2
+except:
+	STR_TYPES = [bytes, str] #Py3
 
 # TODO: New Python image library
 # TODO: ImageMagick module
@@ -254,7 +260,7 @@ class BaseMetadataObject(object):
 		Really add_metadata, as won't overwrite
 		"""
 		for (k,v) in mdhash.items():
-			if type(v) in [str, unicode] and self._factory.add_lang:
+			if type(v) in STR_TYPES and self._factory.add_lang:
 				v = self.langhash_to_jsonld({self._factory.default_lang : v})
 			elif type(v) == dict:
 				# "date":{"en:"Circa 1400",fr":"Environ 1400"}
@@ -263,7 +269,7 @@ class BaseMetadataObject(object):
 
 	def set_label(self, label):
 		"""Set label property."""
-		if type(label) in [str, unicode] and self._factory.add_lang:
+		if type(label) in STR_TYPES and self._factory.add_lang:
 			label = self.langhash_to_jsonld({self._factory.default_lang : label})
 		elif type(label) == dict:
 			# {"en:"Something",fr":"Quelque Chose"}
@@ -273,7 +279,7 @@ class BaseMetadataObject(object):
 	def toJSON(self, top=False):
 		"""Serialize as JSON."""
 		d = self.__dict__.copy()
-		if d.has_key('id') and d['id']:
+		if 'id' in d and d['id']:
 			d['@id'] = d['id']
 			del d['id']
 		d['@type'] = d['type']
@@ -282,19 +288,19 @@ class BaseMetadataObject(object):
 			if not v or k[0] == "_":
 				del d[k]
 		for e in self._required:
-			if not d.has_key(e):
+			if e not in d:
 				raise MetadataError("Resource type '%s' requires '%s' to be set" % (self._type, e))
 		if self._factory.debug_level == "warn":
 			for e in self._warn:
-				if not d.has_key(e):
+				if e not in d:
 					print("WARNING: Resource type '%s' should have '%s' set" % (self._type, e))
 		if top:
 			d['@context'] = self._factory.context_uri
 
 		# validate enumerations
-		if d.has_key('viewingHint') and not d['viewingHint'] in VIEWINGHINTS:
+		if 'viewingHint' in d and not d['viewingHint'] in VIEWINGHINTS:
 			raise MetadataError("ViewingHint must be one of: individuals, paged, continuous")
-		if d.has_key('viewingDirection') and not d['viewingDirection'] in VIEWINGDIRS:
+		if 'viewingDirection' in d and not d['viewingDirection'] in VIEWINGDIRS:
 			raise MetadataError("ViewingDirection must be one of: left-to-right, right-to-left, top-to-bottom, bottom-to-top")
 
 		return d
@@ -404,12 +410,12 @@ class Collection(BaseMetadataObject):
 		json = super(Collection, self).toJSON(top)
 		newcolls = []
 		newmans = []
-		if json.has_key('collections'):
+		if 'collections' in json:
 			# Add in only @id, @type, label
 			for c in json['collections']:
 				newcolls.append({"@id": c.id, '@type': 'sc:Collection', 'label': c.label})
 			json['collections'] = newcolls
-		if json.has_key('manifests'):
+		if 'manifests' in json:
 			# Add in only @id, @type, label
 			for c in json['manifests']:
 				newmans.append({"@id": c.id, '@type': 'sc:Manifest', 'label': c.label})
@@ -480,7 +486,7 @@ class Manifest(BaseMetadataObject):
 			else:
 				raise MetadataError("Non-Sequence in Manifest['sequences']")
 		json['sequences'] = newseqs
-		if json.has_key('structures'):
+		if 'structures' in json:
 			newstructs = []
 			for s in json['structures']:
 				newstructs.append(s.toJSON(False))
@@ -581,12 +587,12 @@ class Canvas(ContentResource):
 	def toJSON(self, top=True):
 		"""Serialize as JSON."""
 		json = super(Canvas, self).toJSON(top)
-		if json.has_key('images'):
+		if 'images' in json:
 			newimgs = []
 			for c in json['images']:
 				newimgs.append(c.toJSON(False))
 			json['images'] = newimgs
-		if json.has_key('otherContent'):
+		if 'otherContent' in json:
 			newlists = []
 			for c in json['otherContent']:
 				newlists.append(c.toJSON(False))

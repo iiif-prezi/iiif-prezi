@@ -1,5 +1,6 @@
 """IIIF Presentation API Manifest Factory."""
 
+from __future__ import unicode_literals
 import os, sys
 
 from iiif_prezi.json_with_order import json, OrderedDict
@@ -33,6 +34,11 @@ try:
 	from lxml import etree
 except:
 	etree = None
+
+try:
+	STR_TYPES = [str, unicode] #Py2
+except:
+	STR_TYPES = [bytes, str] #Py3
 
 class PresentationError(Exception):
 	"""Base exception for iiif_prezi."""
@@ -390,11 +396,15 @@ class BaseMetadataObject(object):
 
 	def __setattr__(self, which, value):
 		"""Attribute setting magic for error checking and resource/literal handling."""
+		try:
+			types = [str, unicode, list, dict] #Py2
+		except: 
+			types = [bytes, str, list, dict] #Py3
 		if which == 'context':
 			raise DataError("Must not set context on non-Service, non-root objects")
 		elif which[0] != "_" and not which in self._properties and not which in self._extra_properties and not which in self._structure_properties.keys():
 			self.maybe_warn("Setting non-standard field '%s' on resource of type '%s'" % (which, self._type))
-		elif which[0] != '_' and not type(value) in [str, unicode, list, dict] and not which in self._integer_properties and \
+		elif which[0] != '_' and not type(value) in types and not which in self._integer_properties and \
 			not isinstance(value, BaseMetadataObject) and not isinstance(value, OrderedDict):
 			# Raise Exception for standard prop set to non standard value
 			# not perfect but stops the worst cases.				
@@ -422,7 +432,7 @@ class BaseMetadataObject(object):
 		# "http://..."
 		# {"@id": "http://..."}
 		# or list of above
-		if type(data) in [str, unicode]:
+		if type(data) in STR_TYPES:
 			return data.startswith('http')
 		elif type(data) == dict:
 			return '@id' in data
@@ -430,7 +440,7 @@ class BaseMetadataObject(object):
 			return True
 		elif type(data) == list:
 			for d in data:
-				if type(d) in [str, unicode] and not data.startswith('http'):
+				if type(d) in STR_TYPES and not data.startswith('http'):
 					return False
 				elif type(d) == dict and not '@id' in d:
 					return False
@@ -506,18 +516,17 @@ class BaseMetadataObject(object):
 		# triggering __setattr__ on the resource ;)
 		md = self.metadata
 
-		mdk = mdhash.keys() 
-		mdk.sort()
+		mdk = sorted(mdhash.keys())
 		if mdk == ['label', 'value']:
 			# Work around to allow multiple languages for label;
 			# just have to set_metadata() one at a time
 			k = mdhash['label']
 			v = mdhash['value']
-			if type(k) in [str, unicode] and self._factory.add_lang:
+			if type(k) in STR_TYPES and self._factory.add_lang:
 				k = self.langhash_to_jsonld({self._factory.default_lang : k})
 			elif type(k) == dict:
 				k = self.langhash_to_jsonld(k)
-			if type(v) in [str, unicode] and self._factory.add_lang:
+			if type(v) in STR_TYPES and self._factory.add_lang:
 				v = self.langhash_to_jsonld({self._factory.default_lang : v})
 			elif type(v) == dict:
 				v = self.langhash_to_jsonld(v)
@@ -525,7 +534,7 @@ class BaseMetadataObject(object):
 
 		else:
 			for (k,v) in mdhash.items():
-				if type(v) in [str, unicode] and self._factory.add_lang:
+				if type(v) in STR_TYPES and self._factory.add_lang:
 					v = self.langhash_to_jsonld({self._factory.default_lang : v})
 				elif type(v) == dict:
 					v = self.langhash_to_jsonld(v)
@@ -533,7 +542,7 @@ class BaseMetadataObject(object):
 
 	def _set_magic(self, which, value, html=True):
 		"""Magical handling of languages for string properties."""
-		if type(value) in [str, unicode]:
+		if type(value) in STR_TYPES:
 			if self._factory.add_lang:
 				value = self.langhash_to_jsonld({self._factory.default_lang : value}, html)
 			elif value and value[0] == '<' and value[-1] == '>':
@@ -545,7 +554,7 @@ class BaseMetadataObject(object):
 			# list of values
 			nl = []
 			for i in value:
-				if type(i) in [str, unicode]:
+				if type(i) in STR_TYPES:
 					if self._factory.add_lang:
 						nl.extend(self.langhash_to_jsonld({self._factory.default_lang : i}, html))
 					elif value and value[0] == '<' and value[-1] == '>':
@@ -609,34 +618,34 @@ class BaseMetadataObject(object):
 	def toJSON(self, top=False):
 		"""Serialize as JSON."""
 		d = self.__dict__.copy()
-		if d.has_key('id') and d['id']:
+		if 'id' in d and d['id']:
 			d['@id'] = d['id']
 			del d['id']
 		d['@type'] = d['type']
 		del d['type']
-		for (k, v) in d.items():
+		for (k, v) in list(d.items()): #list makes copy in Py3
 			if not v or k[0] == "_":
 				del d[k]
-		if d.has_key('context'):
+		if 'context' in d:
 			d['@context'] = d['context']
 			del d['context']
 		for e in self._required:
-			if not d.has_key(e):
-				if self._structure_properties.has_key(e):
+			if e not in d:
+				if e in self._structure_properties:
 					raise StructuralError("Resource type '%s' requires '%s' to be set" % (self._type, e), self)
 				else:
 					raise RequirementError("Resource type '%s' requires '%s' to be set" % (self._type, e), self)
 		debug = self._factory.debug_level
 		if debug.find("warn") > -1:
 			for e in self._warn:
-				if not d.has_key(e):
+				if e not in d:
 					msg = "Resource type '%s' should have '%s' set" % (self._type, e)
 					self.maybe_warn(msg)
 		if top:
 			d['@context'] = self._factory.context_uri
 
 		# Enumerations
-		if d.has_key('viewingHint'):
+		if 'viewingHint' in d:
 			if hasattr(self, '_viewing_hints'):
 				if not d['viewingHint'] in self._viewing_hints:
 					msg = "'%s' not a known viewing hint for type '%s': %s" % (d['viewingHint'], self._type, ' '.join(self._viewing_hints))
@@ -645,7 +654,7 @@ class BaseMetadataObject(object):
 				msg = "Resource type '%s' does not have any known viewingHints; '%s' given" % (self._type, d['viewingHint'])
 				self.maybe_warn(msg)
 
-		if d.has_key('viewingDirection'):
+		if 'viewingDirection' in d:
 			if hasattr(self, '_viewing_directions'):
 				if not d['viewingDirection'] in self._viewing_directions:
 					msg = "'%s' not a known viewing direction for type '%s': %s" % (d['viewingDirection'], self._type, ' '.join(self._viewing_directions))
@@ -656,7 +665,7 @@ class BaseMetadataObject(object):
 
 		# Recurse into structures, maybe minimally
 		for (p,sinfo) in self._structure_properties.items():
-			if d.has_key(p):
+			if p in d:
 				if type(d[p]) == list:
 					newl = []
 					for s in d[p]:
@@ -681,7 +690,7 @@ class BaseMetadataObject(object):
 		minimal = sinfo.get('minimal', False)
 		if minimalOveride:
 			minimal=True
-		if type(instance) in [str, unicode]:
+		if type(instance) in STR_TYPES:
 			# Just a URI
 			return instance
 		elif ( isinstance(instance, BaseMetadataObject) and typ == None ) or (typ != None and isinstance(instance, typ)):
@@ -689,7 +698,7 @@ class BaseMetadataObject(object):
 				return {'@id': instance.id, '@type': instance._type, 'label': instance.label}
 			else:
 				return instance.toJSON(False)
-		elif type(instance) == dict and ( (instance.has_key('@type') and instance['@type'] == typ._type) or typ == None ):
+		elif type(instance) == dict and ( ('@type' in instance and instance['@type'] == typ._type) or typ == None ):
 			if minimal:
 				return {'@id': instance['@id'], '@type':instance['@type'], 'label': instance['label']}
 			else:
