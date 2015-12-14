@@ -19,8 +19,8 @@ of the `International Image Interoperability Framework
 Installation
 ------------
 
-The library, test and examples are designed to work with Python 2.6 
-or 2.7. 
+The library, tests and examples are designed to work with Python 2.6,  
+2.7, 3.3, 3.4 and 3.5. 
 
 **Automatic installation from PyPI**
 
