@@ -1,3 +1,4 @@
+sudo: false
 language: python
 python:
   - "2.6"
@@ -8,7 +9,6 @@ python:
 # commands to install dependencies
 # need "python setup.py install" to install resync so that client tests work
 install:
-  - sudo apt-get update
   - pip install Pillow coveralls pep257 restructuredtext_lint testfixtures
   - python setup.py install
 # commands to run tests
