@@ -1481,17 +1481,28 @@ class ImageService(Service):
 			self.profile = profile
 
 # Need to set these at the end, after the classes have been defined
-Collection._structure_properties = {'collections' : {'subclass': Collection, 'minimal': True, 'list': True}, 
-									'manifests': {'subclass': Manifest, 'minimal': True, 'list': True}}
-Manifest._structure_properties = {'sequences': {'subclass': Sequence, 'list':True}, 
-								  'structures': {'subclass': Range, 'list':True}}
-Sequence._structure_properties = {'canvases': {'subclass':Canvas, 'list':True}}
-Canvas._structure_properties = {'images': {'subclass': Annotation, 'list':True}, 
-								'otherContent':  {'subclass': AnnotationList, 'minimal':True, 'list':True}}
-AnnotationList._structure_properties = {'resources': {'subclass': Annotation, 'list':True}}
-
-Range._structure_properties = {'canvases': {'subclass':Canvas, 'list':True, 'minimal':True}, # Could be canvas.json#xywh= ...
-							   'ranges': {'subclass': Range, 'list':True, 'minimal':True}}
+Collection._structure_properties = {
+    'collections' : { 'subclass': Collection, 'minimal': True, 'list': True }, 
+    'manifests': { 'subclass': Manifest, 'minimal': True, 'list': True }
+}
+Manifest._structure_properties = {
+    'sequences': { 'subclass': Sequence, 'list':True },
+    'structures': { 'subclass': Range, 'list':True }
+}
+Sequence._structure_properties = {
+    'canvases': { 'subclass':Canvas, 'list':True }
+}
+Canvas._structure_properties = {
+    'images': { 'subclass': Annotation, 'list':True }, 
+    'otherContent':  { 'subclass': AnnotationList, 'minimal':True, 'list':True }
+}
+AnnotationList._structure_properties = {
+    'resources': { 'subclass': Annotation, 'list':True }
+}
+Range._structure_properties = {
+    'canvases': { 'subclass':Canvas, 'list':True, 'minimal':True }, # Could be canvas.json#xywh= ...
+    'ranges': { 'subclass': Range, 'list':True, 'minimal':True }
+}
 
 # Don't type check these as they're Content subclasses 
 Annotation._structure_properties = {'resource': {}, 'on':{'subclass': Canvas}}  
@@ -1500,25 +1511,5 @@ Choice._structure_properties = {'default':{}, 'item':{}}
 
 # Add Service object to all classes as structure
 for c in [Collection, Manifest, Sequence, Canvas, Range, Layer, Image, AnnotationList, Annotation, Service]:
-	c._structure_properties['service'] = {'subclass': Service}
-	c._structure_properties['thumbnail'] = {'thumbnail': {'subclass':Image}}
-
-if __name__ == "__main__":
-	factory = ManifestFactory()	
-	factory.set_base_metadata_uri("http://www.example.org/iiif/prezi/")
-	factory.set_base_image_uri("http://www.example.org/iiif/image/")
-	factory.set_iiif_image_info(version="2.0", lvl="2")
-
-	mf = factory.manifest(label="Manifest")
-	mf.viewingHint = "paged"
-
-	seq = mf.sequence() 
-	for x in range(1):
-		cvs = seq.canvas(ident="c%s" % x, label="Canvas %s" % x)  
-		cvs.set_hw(1000,1000)
-		anno = cvs.annotation()  
-		img = factory.image("f1r.c", iiif=True)
-		img2 = factory.image("f1r", iiif=True)
-		chc = anno.choice(img, [img2])
-
-	print(mf.toString(compact=False))
+    c._structure_properties['service'] = {'subclass': Service}
+    c._structure_properties['thumbnail'] = {'thumbnail': {'subclass':Image}}

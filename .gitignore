@@ -1,4 +1,6 @@
 # Build and test
+*.pyc
+__pycache__
 .coverage
 .eggs
 build

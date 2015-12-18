@@ -960,35 +960,3 @@ class Layer(BaseMetadataObject):
 	_warn = []
 
 
-if __name__ == "__main__":
-	factory = ManifestFactory()	
-	factory.set_base_metadata_uri("http://www.example.org/metadata/")
-	factory.set_base_image_uri("http://www.example.org/iiif/")
-
-	mf = factory.manifest(label="Manifest")
-	mf.viewingHint = "paged"
-
-	seq = mf.sequence() 
-	for x in range(2):
-		# Mostly identity will come from incrementing number (f1r, f1v,...)
-		# or the image's identity
-
-		cvs = seq.canvas(ident="c%s" % x, label="Canvas %s" % x)  
-		cvs.set_hw(1000,1000)
-		anno = cvs.annotation() 
-		# al = cvs.annotationList("foo") 
-
-		img = factory.image("f1r.c", iiif=True)
-		#img.set_hw_from_file("/Users/azaroth/Dropbox/SharedCanvasData/m804/images/f1r.c.jpg")
-		img2 = factory.image("f1r", iiif=True)
-		#img2.set_hw_from_file("/Users/azaroth/Dropbox/SharedCanvasData/m804/images/f1r.jpg")
-
-		chc = anno.choice(img, [img2])
-
-
-
-
-
-
-
-
