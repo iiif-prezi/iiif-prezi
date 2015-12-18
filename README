@@ -6,8 +6,8 @@ iiif-prezi
   :target: https://travis-ci.org/zimeon/iiif-prezi
   :alt: Build status
 
-.. image:: https://coveralls.io/repos/zimeon/iiif-prezi/badge.png
-  :target: https://coveralls.io/r/zimeon/iiif-prezi
+.. image:: https://coveralls.io/repos/zimeon/iiif-prezi/badge.png?branch=master&service=github
+  :target: https://coveralls.io/github/zimeon/iiif-prezi?branch=master
   :alt: Test coverage
 
 *iiif-prezi* - A Python library providing a reference implementation
