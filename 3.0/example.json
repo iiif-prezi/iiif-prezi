@@ -1,0 +1,70 @@
+{
+  "@context": [
+  	"http://iiif.io/api/presentation/3/context.json",
+  	"http://w3.org/ns/anno.jsonld"
+  ],
+  "id": "http://example.org/iiif/book1/manifest",
+  "type": "Manifest",
+  "label": {"en": "Book 1", "fr": "Livre 1"},
+  "rights": "cc-by",
+  "sequences": [
+  	{
+  	  "type": "Sequence",
+  	  "members": [
+  	  	{
+  	  	  "id": "http://example.org/iiif/book1/canvas/p1",
+  	  	  "type": "Canvas",
+  	  	  "label": "Page 1",
+  	  	  "height": 4000,
+  	  	  "width": 4000,
+  	  	  "duration": "P20M",
+  	  	  "images": [
+  	  	  	{
+  	  	  	  "id": "http://example.org/iiif/book1/annos/1",
+  	  	  	  "type": "Annotation",
+  	  	  	  "motivation": "painting",
+  	  	  	  "body": {
+  	  	  	  	"id": "http://example.org/images/book1-page1/full/max/0/default.jpg",
+  	  	  	  	"type": "Image",
+  	  	  	  	"format": "image/jpeg",
+  	  	  	  	"service": {
+  	  	  	  	  "@context": "http://iiif.io/api/image/2/context.json",
+  	  	  	  	  "id": "http://example.org/images/book1-page1/",
+  	  	  	  	  "profile": "http://iiif.io/api/image/2/profiles/level2.json"
+  	  	  	  	}
+  	  	  	  },
+  	  	  	  "target": "http://example.org/iiif/book1/canvas/p1#xwyh=0,0,500,500&t=npt:0,120"
+  	  	  	}
+  	  	  ],
+  	  	  "otherContent": [
+  	  	  	{
+  	  	  	  "id": "http://example.org/iiif/book1/list/p1",
+  	  	  	  "type": "AnnotationPage"
+  	  	  	}
+  	  	  ]
+  	  	}
+  	  ]
+  	}
+  ],
+  "structures": [
+  	{
+  	  "id": "http://example.org/iiif/book1/range/r0",
+  	  "type": "Range",
+  	  "label": "Table of Contents",
+  	  "viewingHint": "top",
+  	  "members": [
+  	  	{
+  	  	   "id": "http://example.org/iiif/book/range/r0-1",
+  	  	   "type": "Range",
+  	  	   "label": {"en": "Introduction"},
+  	  	   "members": [
+  	  	    {
+	  	   	  "id": "http://example.org/iiif/book1/canvas/p1",
+  	  	   	  "type": "Canvas"
+  	  	   	}
+  	  	  ]
+  	  	}
+  	  ]
+  	}
+  ]
+}
