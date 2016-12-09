@@ -1,6 +1,7 @@
 """IIIF Presentation API resource loader."""
 
 from __future__ import unicode_literals
+import os
 
 from iiif_prezi.factory import ManifestFactory, Service
 from iiif_prezi.factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
@@ -37,10 +38,11 @@ def load_document_local(url):
 	doc = { 'contextUrl': None,
 			'documentUrl': None,
 			'document': '' }
+	contexts_dir = os.path.join(os.path.dirname(__file__),'contexts')
 	if url == "http://iiif.io/api/presentation/2/context.json":
-		fn = "contexts/context_20.json"
+		fn = os.path.join(contexts_dir,'context_20.json')
 	else:
-		fn = "contexts/context_10.json"
+		fn = os.path.join(contexts_dir,'context_10.json')
 	fh = open(fn)
 	data = fh.read()
 	fh.close()
