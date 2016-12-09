@@ -414,7 +414,7 @@ class BaseMetadataObject(object):
 			raise DataError("%s['%s'] does not accept a %s, only an integer" % (self._type, which, type(value).__name__), self)
 		elif value and which in self._object_properties and not self.test_object(value):
 			raise DataError("%s['%s'] must have a URI or resource, got %s" % (self._type, which, repr(value)))
-		elif self.factory.presentation_api_version == "2.0" and which in PROPS_21:
+		elif self._factory.presentation_api_version == "2.0" and which in PROPS_21:
 			raise DataError("%s['%s'] is from 2.1, but the factory is 2.0")
 
 		if hasattr(self, which) and hasattr(self, 'set_%s' % which):
