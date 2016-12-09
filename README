@@ -2,12 +2,12 @@
 iiif-prezi
 ==========
 
-.. image:: https://travis-ci.org/IIIF/iiif-prezi.png
-  :target: https://travis-ci.org/IIIF/iiif-prezi
+.. image:: https://travis-ci.org/iiif-prezi/iiif-prezi.png
+  :target: https://travis-ci.org/iiif-prezi/iiif-prezi
   :alt: Build status
 
-.. image:: https://coveralls.io/repos/IIIF/iiif-prezi/badge.png?branch=master&service=github
-  :target: https://coveralls.io/github/IIIF/iiif-prezi?branch=master
+.. image:: https://coveralls.io/repos/iiif-prezi/iiif-prezi/badge.png?branch=master&service=github
+  :target: https://coveralls.io/github/iiif-prezi/iiif-prezi?branch=master
   :alt: Test coverage
 
 *iiif-prezi* - A Python library providing a reference implementation
@@ -33,10 +33,10 @@ The *iiif-prezi* library code and scripts are listed in `PyPI
 **Manual installation from github**
 
 First, clone the code and examples from the `Github repository
-<https://github.com/IIIF/iiif-prezi>`_::
+<https://github.com/iiif-prezi/iiif-prezi>`_::
 
     cd /tmp
-    git clone git://github.com/IIIF/iiif-prezi.git
+    git clone git://github.com/iiif-prezi/iiif-prezi.git
     cd iiif/
 
 Second, install `Pillow` (a fork of `PIL`)::
@@ -54,13 +54,13 @@ appropriate places within your python setup using::
     sudo python setup.py install
 
 The source code is maintained on `Github
-<https://github.com/IIIF/iiif-prezi>`_
+<https://github.com/iiif-prezi/iiif-prezi>`_
 
 Usage
 -----
 
 See the `Code walkthrough
-<https://github.com/IIIF/iiif-prezi/blob/master/CODE_WALKTHROUGH.md>`_
+<https://github.com/iiif-prezi/iiif-prezi/blob/master/CODE_WALKTHROUGH.md>`_
 
 Authors and Contributors
 ------------------------
@@ -71,4 +71,4 @@ Author:
 
 Contributors: 
 see `Github contributors graph
-<https://github.com/IIIF/iiif-prezi/graphs/contributors>`_
+<https://github.com/iiif-prezi/iiif-prezi/graphs/contributors>`_
