@@ -23,8 +23,6 @@ except ImportError:
     from urllib2 import Request
     from urllib import urlencode
 
-from StringIO import StringIO
-
 try:
 	from PIL import Image as pil_image
 except:
