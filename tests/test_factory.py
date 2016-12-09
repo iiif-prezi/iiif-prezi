@@ -12,9 +12,9 @@ class TestAll(unittest.TestCase):
         self.assertFalse( mf.add_lang )
         # simple instance variable sets
         mf = ManifestFactory( mdbase="aa", imgbase="bb", mddir="tests" )
-        self.assertEqual( mf.metadata_base, 'aa/' )
+        self.assertEqual( mf.prezi_base, 'aa/' )
         self.assertEqual( mf.default_base_image_uri, 'bb' )
-        self.assertEqual( mf.metadata_dir, 'tests/' )
+        self.assertEqual( mf.prezi_dir, 'tests/' )
         # language setting
         mf = ManifestFactory(lang='cy')
         self.assertTrue( mf.add_lang )
