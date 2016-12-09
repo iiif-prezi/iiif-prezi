@@ -54,26 +54,30 @@ class PresentationError(Exception):
 
 class ConfigurationError(PresentationError):
 	"""Raised when an object (likely the factory) isn't configured properly for the current operation."""
+
 	pass
 
 
 class MetadataError(PresentationError):
 	"""Base metadata exception."""
-	pass
 
+	pass
 
 class StructuralError(MetadataError):
 	"""Raised when there are structural problem with an object/metadata."""
+
 	pass
 
 
 class RequirementError(MetadataError):
 	"""Raised when metadata requirements not met."""
+
 	pass
 
 
 class DataError(MetadataError):
 	"""Raised when metadata is not valid/allowed."""
+
 	pass
 
 
@@ -854,7 +858,8 @@ class Manifest(BaseMetadataObject):
 		return False
 
 	def add_sequence(self, seq):
-		"""Add Sequence to this Manifest.		
+		"""Add Sequence to this Manifest.
+				
 		Verify identity doesn't conflict with existing sequences
 		"""
 		if seq.id:
