@@ -188,6 +188,9 @@ class ManifestReader(object):
 			func = getattr(parent, fn)
 			try:
 				what = func(ident=ident)
+			except ConfigurationError:
+				# This is thrown when there is an ident, but it's not HTTP
+				raise RequirementError("The identifier '%s' is not an HTTP(S) URI" % ident, None)
 			except TypeError:
 				if fn == "choice":
 					# Have to construct default and items first
