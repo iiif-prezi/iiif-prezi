@@ -54,54 +54,54 @@ class PresentationError(Exception):
 
 class ConfigurationError(PresentationError):
 	"""Raised when an object (likely the factory) isn't configured properly for the current operation."""
-
 	pass
 
 
 class MetadataError(PresentationError):
 	"""Base metadata exception."""
-
 	pass
 
 
 class StructuralError(MetadataError):
 	"""Raised when there are structural problem with an object/metadata."""
-
 	pass
 
 
 class RequirementError(MetadataError):
 	"""Raised when metadata requirements not met."""
-
 	pass
 
 
 class DataError(MetadataError):
 	"""Raised when metadata is not valid/allowed."""
-
 	pass
 
 
+COLL_VIEWINGHINTS = ['individuals', 'multi-part']
 MAN_VIEWINGHINTS = ['individuals', 'paged', 'continuous']
-CVS_VIEWINGHINTS = ['non-paged']
+SEQ_VIEWINGHINTS = ['individuals', 'paged', 'continuous']
+CVS_VIEWINGHINTS = ['non-paged', 'facing-pages']
 RNG_VIEWINGHINTS = ['top', 'individuals', 'paged', 'continuous']
+
 VIEWINGDIRS = ['left-to-right', 'right-to-left', 'top-to-bottom', 'bottom-to-top']
 
 BAD_HTML_TAGS = ['script', 'style', 'object', 'form', 'input']
 GOOD_HTML_TAGS = ['a', 'b', 'br', 'i', 'img', 'p', 'span']
 
 KEY_ORDER = ["@context", "@id", "@type", "@value", "@language", "label", "value",
-             "metadata", "description", "thumbnail", "attribution", "license", "logo",
-             "format", "height", "width", "startCanvas",
-             "viewingDirection", "viewingHint", 
+             "metadata", "description", "thumbnail", "rendering", "attribution", "license",
+             "logo", "format", "height", "width", "startCanvas",
+             "viewingDirection", "viewingHint", "navDate",
              "profile", "seeAlso", "search", "formats", "qualities", "supports",
 			 "scale_factors", "scaleFactors", "tile_width", "tile_height", "tiles", "sizes",
-             "within", "motivation", "stylesheet", "resource", 
+             "within", "motivation", "stylesheet", "resource", "contentLayer",
              "on", "default", "item", "style", "full", "selector", "chars", "language", 
              "sequences", "structures", "canvases", "resources", "images", "otherContent" ] 
 
 KEY_ORDER_HASH = dict([(KEY_ORDER[x],x) for x in range(len(KEY_ORDER))])
 
+PROPS_21 = ["rendering", "navDate", "members", "contentLayer"]
+HINTS_21 = ["multi-part", "facing-pages"]
 
 class ManifestFactory(object):
 	"""Factory class for IIIF Presentation API resources."""
@@ -109,7 +109,7 @@ class ManifestFactory(object):
 	metadata_base = ""
 	metadata_dir = ""
 
-	def __init__(self, version="2.0", mdbase="", imgbase="", mddir="", lang="en"):
+	def __init__(self, version="2.1", mdbase="", imgbase="", mddir="", lang="en"):
 		"""Initialize ManifestFactory.
 
 		mdbase: (string) URI to which identities will be appended for metadata
@@ -414,6 +414,8 @@ class BaseMetadataObject(object):
 			raise DataError("%s['%s'] does not accept a %s, only an integer" % (self._type, which, type(value).__name__), self)
 		elif value and which in self._object_properties and not self.test_object(value):
 			raise DataError("%s['%s'] must have a URI or resource, got %s" % (self._type, which, repr(value)))
+		elif self.factory.presentation_api_version == "2.0" and which in PROPS_21:
+			raise DataError("%s['%s'] is from 2.1, but the factory is 2.0")
 
 		if hasattr(self, which) and hasattr(self, 'set_%s' % which):
 			fn = getattr(self, 'set_%s' % which)
@@ -791,8 +793,12 @@ class Collection(BaseMetadataObject):
 	_uri_segment = ""
 	_required = ["@id", 'label']
 	_warn = ["description"]
+	_viewing_hints = COLL_VIEWINGHINTS
+	_extra_properties = ["navDate"]
+
 	collections = []
 	manifests = []
+	members = []
 
 	def __init__(self, *args, **kw):
 		"""Initialize Collection."""
@@ -831,6 +837,7 @@ class Manifest(BaseMetadataObject):
 	_warn = ["description"]
 	_viewing_hints = MAN_VIEWINGHINTS
 	_viewing_directions = VIEWINGDIRS
+	_extra_properties = ["navDate"]
 
 	sequences = []
 	structures = []
@@ -847,8 +854,7 @@ class Manifest(BaseMetadataObject):
 		return False
 
 	def add_sequence(self, seq):
-		"""Add Sequence to this Manifest.
-		
+		"""Add Sequence to this Manifest.		
 		Verify identity doesn't conflict with existing sequences
 		"""
 		if seq.id:
@@ -856,10 +862,12 @@ class Manifest(BaseMetadataObject):
 				if s.id == seq.id:
 					raise DataError("Cannot have two Sequences with the same identity", self)
 
-		# Label is only required if there is more than one sequence
+		# Label and @id are only required if there is more than one sequence
 		if self.sequences:
+			seq._required.append("@id")
 			seq._required.append("label")
 			if len(self.sequences) == 1:
+				# Also add to existing sequence
 				self.sequences[0]._required.append("label")
 		self.sequences.append(seq)
 
@@ -894,9 +902,9 @@ class Sequence(BaseMetadataObject):
 	_type = "sc:Sequence"
 	_uri_segment = "sequence/"
 	_required = ["canvases"]
-	_warn = ["@id"]
+	_warn = []
 	_viewing_directions = VIEWINGDIRS
-	_viewing_hints = MAN_VIEWINGHINTS
+	_viewing_hints = SEQ_VIEWINGHINTS
 	_extra_properties = ["startCanvas"]
 
 	canvases = []
@@ -1336,7 +1344,7 @@ class Range(BaseMetadataObject):
 	_uri_segment = "range/"	
 	_required = ["@id", "label"]
 	_warn = ['canvases']
-	_extra_properties = ['startCanvas']
+	_extra_properties = ['startCanvas', 'contentLayer']
 	_viewing_hints = RNG_VIEWINGHINTS
 	_viewing_directions = VIEWINGDIRS
 	_parent = None
