@@ -119,37 +119,37 @@ class TestAll(unittest.TestCase):
         self.assertRaises( StructuralError, error, 15 )
         self.assertRaises( StructuralError, error, 16 )
         self.assertRaises( StructuralError, error, 17 )
-        self.assertRaises( RequirementError, error, 18 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 19 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 20 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 21 ) # was StructuralError
+        self.assertRaises( StructuralError, error, 18 )
+        self.assertRaises( PresentationError, error, 19 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 20 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 21 ) # was StructuralError
         self.assertRaises( RequirementError, error, 22 )
-        self.assertRaises( RequirementError, error, 23 ) # was ConfigurationError
+        self.assertRaises( PresentationError, error, 23 ) # was ConfigurationError
         self.assertRaises( RequirementError, error, 24 )
-        self.assertRaises( RequirementError, error, 25 ) # was DataError
+        self.assertRaises( PresentationError, error, 25 ) # was DataError
         self.assertRaises( RequirementError, error, 26 )
-        self.assertRaises( RequirementError, error, 27 ) # was DataError
+        self.assertRaises( PresentationError, error, 27 ) # was DataError
         self.assertRaises( RequirementError, error, 28 )
-        self.assertRaises( RequirementError, error, 29 ) # was DataError
-        self.assertRaises( RequirementError, error, 30 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 31 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 32 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 29 ) # was DataError
+        self.assertRaises( PresentationError, error, 30 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 31 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 32 ) # was StructuralError
         self.assertRaises( RequirementError, error, 33 )
-        self.assertRaises( RequirementError, error, 34 ) # was DataError
-        self.assertRaises( RequirementError, error, 35 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 36 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 37 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 38 ) # was StructuralError
+        # self.assertRaises( RequirementError, error, 34 ) # was DataError
+        self.assertRaises( PresentationError, error, 35 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 36 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 37 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 38 ) # was StructuralError
         self.assertRaises( RequirementError, error, 39 )
-        self.assertRaises( RequirementError, error, 40 ) # was StructuralError
+        self.assertRaises( PresentationError, error, 40 ) # was StructuralError
         self.assertRaises( RequirementError, error, 41 )
-        self.assertRaises( RequirementError, error, 42 ) # was ConfigurationError
-        self.assertRaises( RequirementError, error, 43 ) # was DataError
-        self.assertRaises( RequirementError, error, 44 ) # was DataError
+        self.assertRaises( PresentationError, error, 42 ) # was ConfigurationError
+        self.assertRaises( PresentationError, error, 43 ) # was DataError
+        self.assertRaises( PresentationError, error, 44 ) # was DataError
         #self.assertRaises( DataError, error, 45 ) #FIXME/zimeon py2-py3 diff
         self.assertRaises( DataError, error, 46 )
         #self.assertRaises( DataError, error, 47 ) #FIXME/zimeon py2-py3 diff
         #self.assertRaises( DataError, error, 48 ) #FIXME/zimeon py2-py3 diff
         #self.assertRaises( DataError, error, 49 ) #FIXME/zimeon py2-py3 diff
-        self.assertRaises( RequirementError, error, 50 ) # was DataError
+        self.assertRaises( PresentationError, error, 50 ) # was DataError
         self.assertRaises( RequirementError, error, 51 )
