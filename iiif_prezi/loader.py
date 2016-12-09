@@ -89,9 +89,16 @@ class ManifestReader(object):
 		if ('@context' not in js):
 			raise SerializationError('Top level resource MUST have @context', js)
 		ctx = js['@context']
-		try:
-			version = self.contexts[ctx]
-		except:
+		# Allow list of contexts, and iterate
+		if type(ctx) != list:
+			ctx = [ctx]
+
+		version = None
+		for c in ctx:
+			if self.contexts.has_key(c):
+				version = self.contexts[c]
+				break
+		if not version:
 			raise SerializationError('Top level @context is not known', js)
 		if self.require_version and self.require_version != version:
 			raise SerializationError('Expected version %s context, got version %s' % (self.require_version, version))
