@@ -859,7 +859,7 @@ class Manifest(BaseMetadataObject):
 
 	def add_sequence(self, seq):
 		"""Add Sequence to this Manifest.
-				
+
 		Verify identity doesn't conflict with existing sequences
 		"""
 		if seq.id:
@@ -938,7 +938,7 @@ class Sequence(BaseMetadataObject):
 
 	def set_start_canvas(self, cvs):
 		"""Find and return the start canvas."""
-		if type(cvs) in [unicode, str]:
+		if type(cvs) in STR_TYPES:
 			cvsid = cvs
 		elif isinstance(cvs, Canvas):
 			cvsid = cvs.id
