@@ -119,10 +119,10 @@ class TestAll(unittest.TestCase):
         self.assertRaises( StructuralError, error, 15 )
         self.assertRaises( StructuralError, error, 16 )
         self.assertRaises( StructuralError, error, 17 )
-        self.assertRaises( RequirementError, error, 18 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 19 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 20 ) # was StructuralError
-        self.assertRaises( RequirementError, error, 21 ) # was StructuralError
+        self.assertRaises( StructuralError, error, 18 )
+        self.assertRaises( StructuralError, error, 19 ) # was StructuralError
+        self.assertRaises( StructuralError, error, 20 ) # was StructuralError
+        self.assertRaises( StructuralError, error, 21 ) # was StructuralError
         self.assertRaises( RequirementError, error, 22 )
         self.assertRaises( RequirementError, error, 23 ) # was ConfigurationError
         self.assertRaises( RequirementError, error, 24 )
