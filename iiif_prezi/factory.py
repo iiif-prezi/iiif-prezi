@@ -854,8 +854,7 @@ class Manifest(BaseMetadataObject):
 		return False
 
 	def add_sequence(self, seq):
-		"""Add Sequence to this Manifest.
-		
+		"""Add Sequence to this Manifest.		
 		Verify identity doesn't conflict with existing sequences
 		"""
 		if seq.id:
@@ -863,10 +862,12 @@ class Manifest(BaseMetadataObject):
 				if s.id == seq.id:
 					raise DataError("Cannot have two Sequences with the same identity", self)
 
-		# Label is only required if there is more than one sequence
+		# Label and @id are only required if there is more than one sequence
 		if self.sequences:
+			seq._required.append("@id")
 			seq._required.append("label")
 			if len(self.sequences) == 1:
+				# Also add to existing sequence
 				self.sequences[0]._required.append("label")
 		self.sequences.append(seq)
 
@@ -901,7 +902,7 @@ class Sequence(BaseMetadataObject):
 	_type = "sc:Sequence"
 	_uri_segment = "sequence/"
 	_required = ["canvases"]
-	_warn = ["@id"]
+	_warn = []
 	_viewing_directions = VIEWINGDIRS
 	_viewing_hints = SEQ_VIEWINGHINTS
 	_extra_properties = ["startCanvas"]
