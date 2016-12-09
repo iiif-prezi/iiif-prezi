@@ -107,6 +107,9 @@ class ManifestReader(object):
 	def read(self):
 		"""Read Presentation API resource."""
 		data = self.data
+		if not data:
+			raise SerializationError("No data provided", data)
+
 		if type(data) in [dict, OrderedDict]:
 			js = data
 		else:
