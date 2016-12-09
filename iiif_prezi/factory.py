@@ -23,6 +23,8 @@ except ImportError:
     from urllib2 import Request
     from urllib import urlencode
 
+from StringIO import StringIO
+
 try:
 	from PIL import Image as pil_image
 except:
@@ -461,7 +463,7 @@ class BaseMetadataObject(object):
 		"""Raise DataError unless data is good IIIF subset HTML."""
 		if etree:
 			try:
-				dom = etree.XML(data)
+				dom = etree.HTML(data)
 			except Exception as e:
 				raise DataError("Invalid XHTML in '%s':  %s" % (data, e), self)
 			for elm in dom.iter():
