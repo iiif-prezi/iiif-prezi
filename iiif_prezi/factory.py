@@ -414,7 +414,7 @@ class BaseMetadataObject(object):
 			raise DataError("%s['%s'] does not accept a %s, only an integer" % (self._type, which, type(value).__name__), self)
 		elif value and which in self._object_properties and not self.test_object(value):
 			raise DataError("%s['%s'] must have a URI or resource, got %s" % (self._type, which, repr(value)))
-		elif self._factory.presentation_api_version == "2.0" and which in PROPS_21:
+		elif which != "_factory" and self._factory.presentation_api_version == "2.0" and which in PROPS_21:
 			raise DataError("%s['%s'] is from 2.1, but the factory is 2.0")
 
 		if hasattr(self, which) and hasattr(self, 'set_%s' % which):
@@ -864,11 +864,12 @@ class Manifest(BaseMetadataObject):
 
 		# Label and @id are only required if there is more than one sequence
 		if self.sequences:
-			seq._required.append("@id")
-			seq._required.append("label")
+			seq._required = ['@id', '@type', 'label']
 			if len(self.sequences) == 1:
 				# Also add to existing sequence
-				self.sequences[0]._required.append("label")
+				ns2 = self.sequences[0]._required[:]
+				ns2.append("label")
+				self.sequences[0]._required = ns2
 		self.sequences.append(seq)
 
 	def add_range(self, rng):
@@ -1308,10 +1309,10 @@ class AnnotationList(BaseMetadataObject):
 
 	def __init__(self, *args, **kw):
 		"""Initialize Annotation List."""
+		return super(AnnotationList, self).__init__(*args, **kw)
 		self.resources = []
 		self.within = []
 		self._canvas = None
-		return super(AnnotationList, self).__init__(*args, **kw)
 
 	def add_annotation(self, imgAnno):
 		"""Add Annotation to this Annotation List."""
