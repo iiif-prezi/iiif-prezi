@@ -95,7 +95,7 @@ class ManifestReader(object):
 
 		version = None
 		for c in ctx:
-			if self.contexts.has_key(c):
+			if c in self.contexts:
 				version = self.contexts[c]
 				break
 		if not version:
