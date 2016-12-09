@@ -53,6 +53,10 @@ setup(
     version=version,
     author='Rob Sanderson',
     packages=['iiif_prezi'],
+    package_data={
+      'iiif_prezi': ['contexts/*.json'],
+    },
+    include_package_data=True,
     classifiers=["Development Status :: 4 - Beta",
                  "Intended Audience :: Developers",
                  "License :: OSI Approved :: Apache Software License",
