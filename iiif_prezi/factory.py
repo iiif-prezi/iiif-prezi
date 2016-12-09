@@ -110,8 +110,8 @@ HINTS_21 = ["multi-part", "facing-pages"]
 class ManifestFactory(object):
 	"""Factory class for IIIF Presentation API resources."""
 
-	metadata_base = ""
-	metadata_dir = ""
+	prezi_base = ""
+	prezi_dir = ""
 
 	def __init__(self, version="2.1", mdbase="", imgbase="", mddir="", lang="en"):
 		"""Initialize ManifestFactory.
@@ -124,12 +124,12 @@ class ManifestFactory(object):
 		self.default_base_image_uri = ""
 		self.default_base_image_dir = ""
 		if mdbase:
-			self.set_base_metadata_uri(mdbase)
+			self.set_base_prezi_uri(mdbase)
 		if imgbase:
 			self.set_base_image_uri(imgbase)
 
 		if mddir:
-			self.set_base_metadata_dir(mddir)
+			self.set_base_prezi_dir(mddir)
 
 		self.default_lang = lang
 		if self.default_lang != "en":
@@ -192,29 +192,29 @@ class ManifestFactory(object):
 			# We don't know the type, just raise a MetadataError
 			raise MetadataError(msg)		
 
-	def assert_base_metadata_uri(self):
+	def assert_base_prezi_uri(self):
 		"""Check base metadata URI is set."""
-		if not self.metadata_base:
-			raise ConfigurationError("Metadata API Base URI is not set")
+		if not self.prezi_base:
+			raise ConfigurationError("IIIF Presentation API Base URI is not set")
 
 	def assert_base_image_uri(self):
 		"""Check base image URI is set."""
 		if not self.default_base_image_uri:
 			raise ConfigurationError("IIIF Image API Base URI is not set")
 
-	def set_base_metadata_dir(self, dir):
+	def set_base_prezi_dir(self, dir):
 		"""Set metadata directory.
 
 		Check existance and adds a trailing slash if
 		none is present
 		"""
 		if not os.path.exists(dir):
-			raise ConfigurationError("Metadata API Base Directory does not exist")
+			raise ConfigurationError("IIIF Presentation API Base Directory does not exist")
 		elif dir[-1] != "/":
 			dir += "/"
-		self.metadata_dir = dir
+		self.prezi_dir = dir
 
-	def set_base_metadata_uri(self, uri):
+	def set_base_prezi_uri(self, uri):
 		"""Set base metadata URI.
 
 		Adds a trailing slash if none is present
@@ -223,7 +223,7 @@ class ManifestFactory(object):
 			raise ValueError("Must provide a URI to set the base URI to")
 		elif uri[-1] != "/":
 			uri += "/"
-		self.metadata_base = uri
+		self.prezi_base = uri
 
 	def set_default_label_language(self, lang):
 		"""Set default language label."""
@@ -278,19 +278,19 @@ class ManifestFactory(object):
 	def collection(self, ident="collection", label="", mdhash={}):
 		"""Create a Collection."""
 		if not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return Collection(self, ident, label, mdhash)
 
 	def manifest(self, ident="manifest", label="", mdhash={}):
 		"""Create a Manifest."""
 		if not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return Manifest(self, ident, label, mdhash)
 
 	def sequence(self,ident="", label="", mdhash={}):
 		"""Create a Sequence."""
 		if ident and not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return Sequence(self, ident, label, mdhash)
 
 	def canvas(self,ident="", label="", mdhash={}):
@@ -298,13 +298,13 @@ class ManifestFactory(object):
 		if not ident:
 			raise RequirementError("Canvases must have a real identity (Canvas['@id'] cannot be empty)")
 		elif not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return Canvas(self, ident, label, mdhash)
 
 	def annotation(self, ident="", label="", mdhash={}):
 		"""Create an Annotation."""
 		if ident and not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return Annotation(self, ident, label=label)
 
 	def annotationList(self, ident="", label="", mdhash={}):
@@ -312,7 +312,7 @@ class ManifestFactory(object):
 		if not ident:
 			raise RequirementError("AnnotationLists must have a real identity (AnnotationList['@id'] cannot be empty)")
 		elif not ident.startswith('http'):
-			self.assert_base_metadata_uri()
+			self.assert_base_prezi_uri()
 		return AnnotationList(self, ident, label, mdhash)
 
 	def image(self, ident, label="", iiif=False, region='full', size='full'):
@@ -376,7 +376,7 @@ class BaseMetadataObject(object):
 			if ident.startswith('http'):
 				self.id = ident
 			else:
-				self.id = factory.metadata_base + self.__class__._uri_segment + ident
+				self.id = factory.prezi_base + self.__class__._uri_segment + ident
 				if not self.id.endswith('.json'):
 					self.id += '.json'
 		else:
@@ -739,7 +739,7 @@ class BaseMetadataObject(object):
 
 		Creates directories as necessary
 		"""
-		mdd = self._factory.metadata_dir
+		mdd = self._factory.prezi_dir
 		if not mdd:
 			raise ConfigurationError("Metadata Directory on Factory must be set to write to file")
 
@@ -747,7 +747,7 @@ class BaseMetadataObject(object):
 		# Now calculate file path based on URI of top object
 		# ... which is self for those of you following at home
 		myid = js['@id']
-		mdb = self._factory.metadata_base
+		mdb = self._factory.prezi_base
 		if not myid.startswith(mdb):
 			raise ConfigurationError("The @id of that object is not the base URI in the Factory")
 		fp = myid[len(mdb):]	
@@ -1138,7 +1138,7 @@ class ExternalText(ContentResource):
 		if ident.startswith('http'):
 			self.id = ident
 		else:
-			self.id = self.id = factory.metadata_base + self.__class__._uri_segment + ident
+			self.id = self.id = factory.prezi_base + self.__class__._uri_segment + ident
 
 
 class Text(ContentResource):
