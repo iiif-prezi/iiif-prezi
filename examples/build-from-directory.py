@@ -13,8 +13,8 @@ fac.set_debug("error")
 fac.set_base_image_uri("http://localhost/iiif")
 fac.set_base_image_dir(image_dir)
 fac.set_iiif_image_info()
-fac.set_base_metadata_uri("http://localhost/prezi/")
-fac.set_base_metadata_dir(prezi_dir)
+fac.set_base_prezi_uri("http://localhost/prezi/")
+fac.set_base_prezi_dir(prezi_dir)
 
 mflbl = os.path.split(image_dir)[1].replace("_", " ").title()
 
