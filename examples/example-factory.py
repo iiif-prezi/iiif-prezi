@@ -9,7 +9,7 @@ identifier = "test"
 
 # Configure the factory
 fac = ManifestFactory()
-fac.set_base_metadata_uri("http://ids.lib.harvard.edu/iiif/metadata/")
+fac.set_base_prezi_uri("http://ids.lib.harvard.edu/iiif/metadata/")
 fac.set_base_image_uri("http://ids.lib.harvard.edu/ids/view/" + identifier + '/')
 fac.set_iiif_image_conformance(1.1, 1)
 

@@ -89,9 +89,16 @@ class ManifestReader(object):
 		if ('@context' not in js):
 			raise SerializationError('Top level resource MUST have @context', js)
 		ctx = js['@context']
-		try:
-			version = self.contexts[ctx]
-		except:
+		# Allow list of contexts, and iterate
+		if type(ctx) != list:
+			ctx = [ctx]
+
+		version = None
+		for c in ctx:
+			if c in self.contexts:
+				version = self.contexts[c]
+				break
+		if not version:
 			raise SerializationError('Top level @context is not known', js)
 		if self.require_version and self.require_version != version:
 			raise SerializationError('Expected version %s context, got version %s' % (self.require_version, version))
@@ -188,6 +195,9 @@ class ManifestReader(object):
 			func = getattr(parent, fn)
 			try:
 				what = func(ident=ident)
+			except ConfigurationError:
+				# This is thrown when there is an ident, but it's not HTTP
+				raise RequirementError("The identifier '%s' is not an HTTP(S) URI" % ident, None)
 			except TypeError:
 				if fn == "choice":
 					# Have to construct default and items first

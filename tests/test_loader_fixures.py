@@ -108,8 +108,8 @@ class TestAll(unittest.TestCase):
         self.assertRaises( SerializationError, error, 4 )
         self.assertRaises( RequirementError, error, 5 )
         self.assertRaises( StructuralError, error, 6 )
-        self.assertRaises( ConfigurationError, error, 7 )
-        self.assertRaises( ConfigurationError, error, 8 )
+        self.assertRaises( RequirementError, error, 7 )
+        self.assertRaises( RequirementError, error, 8 )
         self.assertRaises( RequirementError, error, 9 )
         self.assertRaises( DataError, error, 10 )
         self.assertRaises( StructuralError, error, 11 )
@@ -124,7 +124,7 @@ class TestAll(unittest.TestCase):
         self.assertRaises( PresentationError, error, 20 ) # was StructuralError
         self.assertRaises( PresentationError, error, 21 ) # was StructuralError
         self.assertRaises( RequirementError, error, 22 )
-        self.assertRaises( PresentationError, error, 23 ) # was ConfigurationError
+        self.assertRaises( RequirementError, error, 23 ) # was ConfigurationError
         self.assertRaises( RequirementError, error, 24 )
         self.assertRaises( PresentationError, error, 25 ) # was DataError
         self.assertRaises( RequirementError, error, 26 )
@@ -143,7 +143,7 @@ class TestAll(unittest.TestCase):
         self.assertRaises( RequirementError, error, 39 )
         self.assertRaises( PresentationError, error, 40 ) # was StructuralError
         self.assertRaises( RequirementError, error, 41 )
-        self.assertRaises( PresentationError, error, 42 ) # was ConfigurationError
+        self.assertRaises( RequirementError, error, 42 ) # was ConfigurationError
         self.assertRaises( PresentationError, error, 43 ) # was DataError
         self.assertRaises( PresentationError, error, 44 ) # was DataError
         #self.assertRaises( DataError, error, 45 ) #FIXME/zimeon py2-py3 diff
