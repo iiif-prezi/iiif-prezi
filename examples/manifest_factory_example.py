@@ -3,7 +3,7 @@
 from iiif_prezi.factory import ManifestFactory
     
 factory = ManifestFactory()
-factory.set_base_metadata_uri("http://example.org/iiif/prezi/")
+factory.set_base_prezi_uri("http://example.org/iiif/prezi/")
 factory.set_base_image_uri("http://example.org/iiif/image/")
 factory.set_iiif_image_info(version="2.0", lvl="2")
 
