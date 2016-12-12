@@ -3,7 +3,8 @@
 from __future__ import unicode_literals
 import os, sys, subprocess
 
-from iiif_prezi.json_with_order import json, OrderedDict
+from .json_with_order import json, OrderedDict
+from .util import is_http_uri, STR_TYPES
 
 try:
 	subprocess.check_output #should be OK in python2.7 up
@@ -36,10 +37,6 @@ try:
 except:
 	etree = None
 
-try:
-	STR_TYPES = [str, unicode] #Py2
-except:
-	STR_TYPES = [bytes, str] #Py3
 
 class PresentationError(Exception):
 	"""Base exception for iiif_prezi."""
@@ -277,19 +274,19 @@ class ManifestFactory(object):
 
 	def collection(self, ident="collection", label="", mdhash={}):
 		"""Create a Collection."""
-		if not ident.startswith('http'):
+		if not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return Collection(self, ident, label, mdhash)
 
 	def manifest(self, ident="manifest", label="", mdhash={}):
 		"""Create a Manifest."""
-		if not ident.startswith('http'):
+		if not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return Manifest(self, ident, label, mdhash)
 
 	def sequence(self,ident="", label="", mdhash={}):
 		"""Create a Sequence."""
-		if ident and not ident.startswith('http'):
+		if ident and not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return Sequence(self, ident, label, mdhash)
 
@@ -297,13 +294,13 @@ class ManifestFactory(object):
 		"""Create a Canvas."""
 		if not ident:
 			raise RequirementError("Canvases must have a real identity (Canvas['@id'] cannot be empty)")
-		elif not ident.startswith('http'):
+		elif not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return Canvas(self, ident, label, mdhash)
 
 	def annotation(self, ident="", label="", mdhash={}):
 		"""Create an Annotation."""
-		if ident and not ident.startswith('http'):
+		if ident and not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return Annotation(self, ident, label=label)
 
@@ -311,7 +308,7 @@ class ManifestFactory(object):
 		"""Create an AnnotationList."""
 		if not ident:
 			raise RequirementError("AnnotationLists must have a real identity (AnnotationList['@id'] cannot be empty)")
-		elif not ident.startswith('http'):
+		elif not is_http_uri(ident):
 			self.assert_base_prezi_uri()
 		return AnnotationList(self, ident, label, mdhash)
 
@@ -373,7 +370,7 @@ class BaseMetadataObject(object):
 		"""Initialize BaseMetadataObject."""
 		self._factory = factory
 		if ident:
-			if ident.startswith('http'):
+			if is_http_uri(ident):
 				self.id = ident
 			else:
 				self.id = factory.prezi_base + self.__class__._uri_segment + ident
@@ -440,14 +437,14 @@ class BaseMetadataObject(object):
 		# {"@id": "http://..."}
 		# or list of above
 		if type(data) in STR_TYPES:
-			return data.startswith('http')
+			return is_http_uri(data)
 		elif type(data) == dict:
 			return '@id' in data
 		elif isinstance(data, BaseMetadataObject):
 			return True
 		elif type(data) == list:
 			for d in data:
-				if type(d) in STR_TYPES and not data.startswith('http'):
+				if type(d) in STR_TYPES and not is_http_uri(data):
 					return False
 				elif type(d) == dict and not '@id' in d:
 					return False
@@ -999,7 +996,7 @@ class Canvas(ContentResource):
 		if iiif:
 			image.set_hw_from_iiif()
 		else:
-			if imgid.startswith('http'):
+			if is_http_uri(imgid):
 				# take only last segment
 				imgid = os.path.split(imgid)[1]
 			image.set_hw_from_file(imgid)
@@ -1135,7 +1132,7 @@ class ExternalText(ContentResource):
 		self.format = format
 		self.language = language
 		self.type = self.__class__._type
-		if ident.startswith('http'):
+		if is_http_uri(ident):
 			self.id = ident
 		else:
 			self.id = self.id = factory.prezi_base + self.__class__._uri_segment + ident
@@ -1206,7 +1203,7 @@ class Image(ContentResource):
 		else:
 			# Static image
 			# ident is either full URL or filename
-			if ident.startswith('http://') or ident.startswith('https://'):
+			if is_http_uri(ident):
 				self.id = ident
 			else:
 				factory.assert_base_image_uri()
@@ -1455,7 +1452,7 @@ class Service(BaseMetadataObject):
 
 	def __init__(self, factory, ident, label="", context="", profile=""):
 		"""Initialize Service."""
-		if not ident.startswith('http'):
+		if not is_http_uri(ident):
 			raise RequirementError("Services must have an http[s] URI")
 		BaseMetadataObject.__init__(self, factory, ident, label)
 		self.context = context
@@ -1479,7 +1476,7 @@ class ImageService(Service):
 
 	def __init__(self, factory, ident, label="", context="", profile=""):
 		"""Initialize Image Service."""
-		if not ident.startswith('http'):
+		if not is_http_uri(ident):
 			# prepend factory.base before passing up
 			ident = factory.default_base_image_uri + '/' + ident	
 

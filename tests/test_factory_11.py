@@ -8,4 +8,4 @@ class TestAll(unittest.TestCase):
 
     def test01_init(self):
         mf=ManifestFactory()
-        self.assertEqual( mf.context_uri, 'http://www.shared-canvas.org/ns/context.json' )
+        self.assertEqual(mf.context_uri, 'http://www.shared-canvas.org/ns/context.json')
