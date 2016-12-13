@@ -1,4 +1,4 @@
-"""Test code for iiif_prezi.loader"""
+"""Test code for iiif_prezi.loader."""
 from __future__ import unicode_literals
 import re
 import unittest
