@@ -54,8 +54,9 @@ class ManifestReader(object):
 
 	# Note: sc context could also mean 0.9 :(
 	contexts = {
-		'http://www.shared-canvas.org/ns/context.json' : '1.0',
-		'http://iiif.io/api/presentation/2/context.json' : '2.0'
+		'1.0': 'http://www.shared-canvas.org/ns/context.json',
+		'2.0': 'http://iiif.io/api/presentation/2/context.json',
+		'2.1': 'http://iiif.io/api/presentation/2/context.json'
 	}
 
 	def __init__(self, data, version=None):
@@ -90,17 +91,18 @@ class ManifestReader(object):
 		if type(ctx) != list:
 			ctx = [ctx]
 
-		version = None
+		versions = []
 		for c in ctx:
-			if c in self.contexts:
-				version = self.contexts[c]
-				break
-		if not version:
+			for k,v in self.contexts.items():
+				if c == v:
+					versions.append(k)
+					
+		if not versions:
 			raise SerializationError('Top level @context is not known', js)
-		if self.require_version and self.require_version != version:
-			raise SerializationError('Expected version %s context, got version %s' % (self.require_version, version))
-
-		return version
+		if self.require_version and self.require_version not in versions:
+			raise SerializationError('Expected version %s context, got version %s' % (self.require_version, versions))
+		versions.sort()
+		return versions
 
 	def get_warnings(self):
 		"""Get list of warning from debug stream."""
@@ -137,8 +139,11 @@ class ManifestReader(object):
 
 		# Try to see if we're valid JSON-LD before further testing
 
-		version = self.getVersion(js)
-		factory = self.buildFactory(version)
+		versions = self.getVersion(js)
+		if self.require_version:
+			factory = self.buildFactory(self.require_version)
+		else:
+			factory = self.buildFactory(versions[-1])
 		self.factory = factory
 		top = self.readObject(js)
 		if jsonld:
