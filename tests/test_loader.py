@@ -40,7 +40,7 @@ class TestAll(unittest.TestCase):
         self.assertEqual( mf.context_uri, 'http://www.shared-canvas.org/ns/context.json' )
 
     def test05_multipleContexts(self):
-        fh = file('tests/multiple_contexts_fixture.json')
+        fh = open('tests/multiple_contexts_fixture.json')
         data = fh.read()
         fh.close()
         js = json.loads(data)
@@ -48,7 +48,7 @@ class TestAll(unittest.TestCase):
         doc = mr.read()
 
     def test06_range_range(self):
-        fh = file('tests/range_range_fixture.json')
+        fh = open('tests/range_range_fixture.json')
         data = fh.read()
         fh.close()
         js = json.loads(data)
