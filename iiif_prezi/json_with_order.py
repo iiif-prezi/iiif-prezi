@@ -2,7 +2,7 @@
 
 For use in other iiif_prezi modules as:
 
-  from iiif_prezi.json_with_order import json, OrderedDict 
+  from .json_with_order import json, OrderedDict
 """
 
 try:

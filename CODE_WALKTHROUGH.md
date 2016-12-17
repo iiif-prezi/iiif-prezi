@@ -22,9 +22,9 @@ from iiif_prezi.factory import ManifestFactory
 
 fac = ManifestFactory()
 # Where the resources live on the web
-fac.set_base_metadata_uri("http://www.example.org/path/to/object/")
+fac.set_base_prezi_uri("http://www.example.org/path/to/object/")
 # Where the resources live on disk
-fac.set_base_metadata_dir("/home/user/web_root/path/to/object/")
+fac.set_base_prezi_dir("/home/user/web_root/path/to/object/")
 
 # Default Image API information
 fac.set_base_image_uri("http://www.example.org/path/to/image/api/")
@@ -141,7 +141,7 @@ seq.set_start_canvas(canvas1)
 Serialization
 -------------
 
-You can serialize directly to the file (with the base_metadata_dir set).  If you set compact, it will reduce the filesize by leaving out spaces, new lines and other unnecessary whitespace.  It is entirely unreadable by humans, however.
+You can serialize directly to the file (with the base_prezi_dir set).  If you set compact, it will reduce the filesize by leaving out spaces, new lines and other unnecessary whitespace.  It is entirely unreadable by humans, however.
 
 ```python
 manifest.toFile(compact=False)

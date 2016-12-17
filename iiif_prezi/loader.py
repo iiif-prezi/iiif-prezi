@@ -3,9 +3,10 @@
 from __future__ import unicode_literals
 import os
 
-from iiif_prezi.factory import ManifestFactory, Service
-from iiif_prezi.factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
-from iiif_prezi.json_with_order import json, OrderedDict
+from .factory import ManifestFactory, Service
+from .factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
+from .json_with_order import json, OrderedDict
+from .util import is_http_uri, STR_TYPES
 
 try: #python2
     # Must try this first as io also exists in python2
@@ -19,10 +20,6 @@ try:
 except:
 	jsonld = None
 
-try:
-	STR_TYPES = [str, unicode] #Py2
-except:
-	STR_TYPES = [bytes, str] #Py3
 
 class SerializationError(PresentationError):
 	"""Errors found while loading IIIF resource."""
@@ -283,7 +280,7 @@ class ManifestReader(object):
 					for sub in v:
 						if type(sub) in [dict, OrderedDict]:
 							subo = self.readObject(sub, what, k)
-						elif type(sub) in STR_TYPES and sub.startswith('http'):
+						elif is_http_uri(sub):
 							# pointer to a resource (eg canvas in structures)
 							# Use magic setter to ensure listiness
 							if k in what._structure_properties:
@@ -299,7 +296,7 @@ class ManifestReader(object):
 					raise StructuralError("%s['%s'] must be a list, got: %s" % (what._type, k, v), what)
 				elif type(v) in [dict, OrderedDict]:
 					subo = self.readObject(v, what, k)
-				elif type(v) in STR_TYPES and (v.startswith('http') or v.startswith('urn:') or v.startswith('_:')):
+				elif type(v) in STR_TYPES and (is_http_uri(v) or v.startswith('urn:') or v.startswith('_:')):
 					setattr(what, k, v)
 				else:
 					raise StructuralError("%s['%s'] has broken value: %r" % (what._type, k, v), what )

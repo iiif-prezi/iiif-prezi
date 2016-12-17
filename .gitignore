@@ -4,5 +4,6 @@ __pycache__
 .coverage
 .eggs
 build
+dist
 htmlcov
 iiif_prezi.egg-info
