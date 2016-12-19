@@ -52,8 +52,8 @@ if jsonld:
 class ManifestReader(object):
 	"""Read manifest of other presentation API resource."""
 
-	# Note: sc context could also mean 0.9 :(
 	contexts = {
+		'0.9': 'http://www.shared-canvas.org/ns/context.json',
 		'1.0': 'http://www.shared-canvas.org/ns/context.json',
 		'2.0': 'http://iiif.io/api/presentation/2/context.json',
 		'2.1': 'http://iiif.io/api/presentation/2/context.json'
