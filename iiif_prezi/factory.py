@@ -1412,11 +1412,14 @@ class Range(BaseMetadataObject):
 
 	def add_range(self, rng):
 		"""Add Range to this Range."""
-		self.ranges.append(rng.id)		
+		if type(rng) in STR_TYPES and is_http_uri(rng):
+			self.ranges.append(rng)
+		else:
+			self.ranges.append(rng.id)		
 
 	def set_start_canvas(self, cvs):
 		"""Set the start Canvas."""
-		if type(cvs) in [unicode, str]:
+		if type(cvs) in STR_TYPES:
 			cvsid = cvs
 		elif isinstance(cvs, Canvas):
 			cvsid = cvs.id
