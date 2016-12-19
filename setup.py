@@ -51,7 +51,7 @@ if (sys.version_info[0:2] < (2,7)):
 setup(
     name='iiif-prezi',
     version=version,
-    author='Rob Sanderson',
+    author='Rob Sanderson, Simeon Warner',
     packages=['iiif_prezi'],
     package_data={
       'iiif_prezi': ['contexts/*.json'],

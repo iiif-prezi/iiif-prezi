@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 import os, sys, subprocess
 import urllib
 
-from iiif_prezi.json_with_order import json, OrderedDict
+from .json_with_order import json, OrderedDict
+from .util import is_http_uri, STR_TYPES
 
 try:
 	subprocess.check_output #should be OK in python2.7 up
@@ -20,11 +21,6 @@ except:
 		import Image as pil_image
 	except:
 		pil_image = None
-
-try:
-	STR_TYPES = [str, unicode] #Py2
-except:
-	STR_TYPES = [bytes, str] #Py3
 
 # TODO: New Python image library
 # TODO: ImageMagick module
@@ -709,7 +705,7 @@ class ExternalText(ContentResource):
 		self.format = format
 		self.language = language
 		self.type = self.__class__._type
-		if ident.startswith('http'):
+		if is_http_uri(ident):
 			self.id = ident
 		else:
 			self.id = self.id = factory.metadata_base + self.__class__._uri_segment + ident
@@ -776,7 +772,7 @@ class Image(ContentResource):
 		else:
 			# Static image
 			# ident is either full URL or filename
-			if ident.startswith('http://') or ident.startswith('https://'):
+			if is_http_uri(ident):
 				self.id = ident
 			else:
 				self.id = factory.image_base + ident

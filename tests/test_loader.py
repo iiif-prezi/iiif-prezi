@@ -1,7 +1,8 @@
-"""Test code for iiif_prezi.loader"""
+"""Test code for iiif_prezi.loader."""
 from __future__ import unicode_literals
 import re
 import unittest
+import json
 
 from iiif_prezi.loader import SerializationError, load_document_local, ManifestReader
 
@@ -38,3 +39,18 @@ class TestAll(unittest.TestCase):
         mf = mr.buildFactory('2')
         self.assertEqual( mf.context_uri, 'http://www.shared-canvas.org/ns/context.json' )
 
+    def test05_multipleContexts(self):
+        fh = open('tests/multiple_contexts_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()
+
+    def test06_range_range(self):
+        fh = open('tests/range_range_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()
