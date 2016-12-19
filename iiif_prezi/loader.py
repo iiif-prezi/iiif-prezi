@@ -37,7 +37,7 @@ def load_document_local(url):
 			'document': '' }
 	contexts_dir = os.path.join(os.path.dirname(__file__),'contexts')
 	if url == "http://iiif.io/api/presentation/2/context.json":
-		fn = os.path.join(contexts_dir,'context_20.json')
+		fn = os.path.join(contexts_dir,'context_21.json')
 	else:
 		fn = os.path.join(contexts_dir,'context_10.json')
 	fh = open(fn)
