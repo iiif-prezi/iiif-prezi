@@ -41,7 +41,7 @@ class Coverage(Command):
 
 install_requires=[
     "lxml",
-    "Pillow",
+    "Pillow>=3.2.0,<4.0.0",  # Pillow 4.0.0 drops python 2.6 support
     "pyld",
 ]
 if (sys.version_info[0:2] < (2,7)):
