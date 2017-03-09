@@ -54,3 +54,11 @@ class TestAll(unittest.TestCase):
         js = json.loads(data)
         mr = ManifestReader(js)
         doc = mr.read()
+
+    def test07_label_value_language(self):
+        fh = open('tests/label_value_language_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()

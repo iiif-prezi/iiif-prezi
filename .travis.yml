@@ -7,15 +7,13 @@ python:
   - "3.4"
   - "3.5"
 # commands to install dependencies
-# need "python setup.py install" to install resync so that client tests work
 install:
-  - pip install Pillow coveralls pep257 restructuredtext_lint testfixtures
+  - pip install coveralls pep257 testfixtures
   - python setup.py install
 # commands to run tests
 script:
   - py.test
   - pep257 *.py iiif_prezi/*.py
-  - rst-lint README
   - coverage run --source=iiif_prezi setup.py test
 after_success:
   - coveralls
