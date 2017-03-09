@@ -1,0 +1,43 @@
+{
+ "@context": "http://iiif.io/api/presentation/2/context.json",
+ "@id": "http://example.org/testy-test-manifest",
+ "@type": "sc:Manifest",
+ "label": {"@language": "en", "@value": "Test Manifest"},
+ "metadata": [{"label": {"@language": "en", "@value": "Name"},
+               "value": {"@language": "en", "@value": "Jack"}}],
+ "sequences": [
+      {
+        "@id": "http://example.org/iiif/book1/sequence/normal",
+        "@type": "sc:Sequence",
+        "label": "Current Page Order",
+        "canvases": [
+          {
+            "@id": "http://example.org/iiif/book1/canvas/p1",
+            "@type": "sc:Canvas",
+            "label": "p. 1",
+            "height":1000,
+            "width":750,
+            "images": [
+              {
+                "@type": "oa:Annotation",
+                "motivation": "sc:painting",
+                "resource":{
+                    "@id": "http://example.org/iiif/book1/res/page1.jpg",
+                    "@type": "dctypes:Image",
+                    "format": "image/jpeg",
+                    "service": {
+                        "@context": "http://iiif.io/api/image/2/context.json",
+                        "@id": "http://example.org/images/book1-page1",
+                        "profile": "http://iiif.io/api/image/2/level1.json"
+                    },
+                    "height":2000,
+                    "width":1500
+                },
+                "on": "http://example.org/iiif/book1/canvas/p1"
+              }
+            ]
+          }
+        ]
+      }
+ ]
+}
