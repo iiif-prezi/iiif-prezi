@@ -9,11 +9,11 @@ from .json_with_order import json, OrderedDict
 from .util import is_http_uri, STR_TYPES
 
 try: #python2
-    # Must try this first as io also exists in python2
-    # but in the wrong one!
-    import StringIO as io
+	# Must try this first as io also exists in python2
+	# but in the wrong one!
+	import StringIO as io
 except ImportError: #python3
-    import io
+	import io
 
 try:
 	from pyld import jsonld
@@ -29,7 +29,7 @@ class SerializationError(PresentationError):
 def load_document_local(url):
 	"""Load local copy of context document with given url.
 
-	Returns dict with three elements 'contextUrl'=None, 
+	Returns dict with three elements 'contextUrl'=None,
 	'documentUrl'=None and 'document' set to data read
 	"""
 	doc = { 'contextUrl': None,
@@ -45,7 +45,7 @@ def load_document_local(url):
 	fh.close()
 	doc['document'] = data;
 	return doc
-		
+
 if jsonld:
 	jsonld.set_document_loader(load_document_local)
 
@@ -96,7 +96,7 @@ class ManifestReader(object):
 			for k,v in self.contexts.items():
 				if c == v:
 					versions.append(k)
-					
+
 		if not versions:
 			raise SerializationError('Top level @context is not known', js)
 		if self.require_version and self.require_version not in versions:
@@ -108,7 +108,7 @@ class ManifestReader(object):
 		"""Get list of warning from debug stream."""
 		if self.debug_stream:
 			self.debug_stream.seek(0)
-			return self.debug_stream.readlines()	
+			return self.debug_stream.readlines()
 		else:
 			return []
 
@@ -129,13 +129,13 @@ class ManifestReader(object):
 					data = data.decode('utf-8')
 				except:
 					#Py3 does not have decode on str which is unicode already
-					pass	
+					pass
 				if data[0] == u'\ufeff':
 					data = data[1:].strip()
 				try:
 					js = json.loads(data)
 				except:
-					raise SerializationError("Data is not valid JSON", data)				
+					raise SerializationError("Data is not valid JSON", data)
 
 		# Try to see if we're valid JSON-LD before further testing
 
@@ -165,10 +165,28 @@ class ManifestReader(object):
 			raise DataError("Missing @value for string", js)
 		else:
 			if '@language' in js:
-				lh = {js['@language']:js['@value']}				
+				lh = {js['@language']:js['@value']}
 			else:
 				lh = js['@value']
 			return lh
+
+
+	def labels_and_values(self, item):
+		"""Normalize label and value metadata from JSON-LD."""
+		iv = item['value']
+		if type(iv) == dict:
+			iv = self.jsonld_to_langhash(iv)
+		il = item['label']
+		if type(il) == dict:
+			il = self.jsonld_to_langhash(il)
+			lv = {'label': il, 'value': iv}
+		elif type(il) == list:
+			# oh man :(
+			lv = {'label': il, 'value': iv}
+		else:
+			lv = {il: iv}
+		return(lv)
+
 
 	def readObject(self, js, parent=None, parentProperty=None):
 		"""Recursively find top level object type, and build it in Factory."""
@@ -228,7 +246,7 @@ class ManifestReader(object):
 			except StructuralError:
 				# Use Case: Canvas with FragmentSelector
 				# XXX Figure this out
-				raise				
+				raise
 			try:
 				what = fullo.make_selection(js['selector'])
 				if 'style' in js:
@@ -326,19 +344,7 @@ class ManifestReader(object):
 			elif k  == 'metadata':
 				if type(v) == list:
 					for item in v:
-						iv = item['value']
-						if type(iv) == dict:
-							iv = self.jsonld_to_langhash(iv)
-						il = item['label']
-						if type(il) == dict:
-							il = self.jsonld_to_langhash(il)
-							lh = {'label': il, 'value': iv}
-						elif type(il) == list:
-							# oh man :(
-							lh = {'label': il, 'value': iv}
-						else:
-							lh = {il: iv}
-						what.set_metadata(lh)
+						what.set_metadata(self.labels_and_values(item))
 				else:
 					# Actually this is an error
 					raise DataError("Metadata must be a list", what)
