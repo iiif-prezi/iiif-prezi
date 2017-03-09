@@ -3,7 +3,13 @@
  "@id": "http://example.org/testy-test-manifest",
  "@type": "sc:Manifest",
  "label": {"@language": "en", "@value": "Test Manifest"},
- "metadata": [{"label": {"@language": "en", "@value": "Name"},
+ "metadata": [{"label": "Notes", "value": ["Text of note 1", "Text of note 2"]},
+              {"label": "Published", "value": [
+                  {"@value": "Paris, circa 1400", "@language": "en"},
+                  {"@value": "Paris, environ 1400", "@language": "fr"}
+                ]
+              }, 
+              {"label": {"@language": "en", "@value": "Name"},
                "value": {"@language": "en", "@value": "Jack"}}],
  "sequences": [
       {
