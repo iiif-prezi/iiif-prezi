@@ -3,6 +3,7 @@ import unittest
 
 from iiif_prezi.util import is_http_uri
 
+
 class TestAll(unittest.TestCase):
 
     def test01_is_http_uri(self):
