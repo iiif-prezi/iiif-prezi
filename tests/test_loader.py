@@ -82,4 +82,4 @@ class TestAll(unittest.TestCase):
         self.assertEqual(lv, {'l': {'cz': 'val-cz'}})
         lv = mr.labels_and_values({'label': 'l',
                                    'value': ['val1', 'val2']})
-        self.assertEqual(lv, {'l': ['val1', 'val2']})       
+        self.assertEqual(lv, {'l': ['val1', 'val2']})

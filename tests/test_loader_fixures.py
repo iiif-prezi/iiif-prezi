@@ -16,7 +16,7 @@ def print_warnings(reader):
     warns = reader.get_warnings()
     if warns:
         for m in warns:
-            print(m[:-1]) 
+            print(m[:-1])
 
 def do_test(data, excexp):
     debug_tests = 0
@@ -28,7 +28,7 @@ def do_test(data, excexp):
             js = what.toJSON()
             print_warnings(reader)
             return 1
-        except Exception as e:        
+        except Exception as e:
             print_warnings(reader)
             if debug_tests:
                 print("%s:  %s" % (e.__class__.__name__, e))
