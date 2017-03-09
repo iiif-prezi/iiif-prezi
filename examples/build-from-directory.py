@@ -21,9 +21,9 @@ mflbl = os.path.split(image_dir)[1].replace("_", " ").title()
 mfst = fac.manifest(label=mflbl)
 seq = mfst.sequence()
 for fn in os.listdir(image_dir):
-	ident = fn[:-4]
-	title = ident.replace("_", " ").title()
-	cvs = seq.canvas(ident=ident, label=title)
-	cvs.add_image_annotation(ident, True)
+    ident = fn[:-4]
+    title = ident.replace("_", " ").title()
+    cvs = seq.canvas(ident=ident, label=title)
+    cvs.add_image_annotation(ident, True)
 
 mfst.toFile(compact=False)

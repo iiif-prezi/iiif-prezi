@@ -2,21 +2,24 @@
 from setuptools import setup, Command
 import os
 import sys
-# setuptools used instead of distutils.core so that 
+# setuptools used instead of distutils.core so that
 # dependencies can be handled automatically
 
 # Extract version number from iiif_prezi/_version.py. Here we are very strict
 # about the format of the version string as an extra sanity check.
-# (thanks for comments in 
-# http://stackoverflow.com/questions/458550/standard-way-to-embed-version-into-python-package )
+# (thanks for comments in
+# http://stackoverflow.com/questions/458550/standard-way-to-embed-version-into-python-package
+# )
 import re
-VERSIONFILE="iiif_prezi/_version.py"
+VERSIONFILE = "iiif_prezi/_version.py"
 verfilestr = open(VERSIONFILE, "rt").read()
-match = re.search(r"^__version__ = '(\d\.\d.\d+(\.\d+)?)'", verfilestr, re.MULTILINE)
+match = re.search(r"^__version__ = '(\d\.\d.\d+(\.\d+)?)'",
+                  verfilestr, re.MULTILINE)
 if match:
     version = match.group(1)
 else:
     raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE))
+
 
 class Coverage(Command):
     """Class to allow coverage run from setup."""
@@ -39,12 +42,12 @@ class Coverage(Command):
         os.system("coverage html")
         print("See htmlcov/index.html for details.")
 
-install_requires=[
+install_requires = [
     "lxml",
     "Pillow>=3.2.0,<4.0.0",  # Pillow 4.0.0 drops python 2.6 support
     "pyld",
 ]
-if (sys.version_info[0:2] < (2,7)):
+if (sys.version_info[0:2] < (2, 7)):
     install_requires.append('ordereddict')
     install_requires.append('future')
 
@@ -54,12 +57,12 @@ setup(
     author='Rob Sanderson, Simeon Warner',
     packages=['iiif_prezi'],
     package_data={
-      'iiif_prezi': ['contexts/*.json'],
+        'iiif_prezi': ['contexts/*.json'],
     },
     classifiers=["Development Status :: 4 - Beta",
                  "Intended Audience :: Developers",
                  "License :: OSI Approved :: Apache Software License",
-                 "Operating System :: OS Independent", #is this true? know Linux & OS X ok
+                 "Operating System :: OS Independent",  # is this true? know Linux & OS X ok
                  "Programming Language :: Python",
                  "Programming Language :: Python :: 2.6",
                  "Programming Language :: Python :: 2.7",

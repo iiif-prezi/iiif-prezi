@@ -8,11 +8,12 @@ python:
   - "3.5"
 # commands to install dependencies
 install:
-  - pip install coveralls pep257 testfixtures
+  - pip install coveralls pep8 pep257 testfixtures
   - python setup.py install
 # commands to run tests
 script:
   - py.test
+  - pep8 --ignore=E501 *.py iiif_prezi/*.py examples/*.py tests/*.py
   - pep257 *.py iiif_prezi/*.py
   - coverage run --source=iiif_prezi setup.py test
 after_success:
