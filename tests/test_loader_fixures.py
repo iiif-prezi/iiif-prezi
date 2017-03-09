@@ -153,3 +153,27 @@ class TestAll(unittest.TestCase):
         #self.assertRaises( DataError, error, 49 ) #FIXME/zimeon py2-py3 diff
         self.assertRaises( PresentationError, error, 50 ) # was DataError
         self.assertRaises( RequirementError, error, 51 )
+
+    def test05_multipleContexts(self):
+        fh = open('tests/multiple_contexts_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()
+
+    def test06_range_range(self):
+        fh = open('tests/range_range_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()
+
+    def test07_label_value_language(self):
+        fh = open('tests/label_value_language_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)
+        mr = ManifestReader(js)
+        doc = mr.read()
