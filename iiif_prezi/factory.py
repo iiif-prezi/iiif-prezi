@@ -583,7 +583,6 @@ class BaseMetadataObject(object):
 
     def _set_magic(self, which, value, html=True):
         """Magical handling of languages for string properties."""
-
         if type(value) in STR_TYPES:
             if self._factory.add_lang:
                 value = self.langhash_to_jsonld(
