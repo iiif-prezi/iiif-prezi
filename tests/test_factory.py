@@ -1,8 +1,10 @@
 """Test code for iiif_prezi.factory"""
+
 from __future__ import unicode_literals
 import unittest
 
 from iiif_prezi.factory import ManifestFactory, ConfigurationError
+
 
 class TestAll(unittest.TestCase):
 
