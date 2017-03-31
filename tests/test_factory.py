@@ -4,7 +4,6 @@ import unittest
 
 from iiif_prezi.factory import ManifestFactory, ConfigurationError
 
-
 class TestAll(unittest.TestCase):
 
     def test01_init(self):
@@ -38,13 +37,12 @@ class TestAll(unittest.TestCase):
         self.assertEqual(img.height, 432)
 
     def test11_set_multiple_descriptions(self):
-        mf = ManifestFactory(mdbase="aa", imgbase="bb")
-        m = mf.manifest('a manifest')
-        m.description = ["a", "b"]
-        self.assertEqual(m.description, ["a", "b"])
         # XXX Decide if the following should also work
         # m.description = []
         # m.description = "a"
         # m.description = "b"
         # self.assertEqual(m.description, ["a", "b"])
-
+        mf = ManifestFactory(mdbase="aa", imgbase="bb")
+        m = mf.manifest('a manifest')
+        m.description = ["a", "b"]
+        self.assertEqual(m.description, ["a", "b"])
