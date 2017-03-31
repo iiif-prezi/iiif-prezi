@@ -36,3 +36,15 @@ class TestAll(unittest.TestCase):
             'testimages/nci-vol-2303-72.jpg'), None)
         self.assertEqual(img.width, 648)
         self.assertEqual(img.height, 432)
+
+    def test11_set_multiple_descriptions(self):
+        mf = ManifestFactory(mdbase="aa", imgbase="bb")
+        m = mf.manifest('a manifest')
+        m.description = ["a", "b"]
+        self.assertEqual(m.description, ["a", "b"])
+        # XXX Decide if the following should also work
+        # m.description = []
+        # m.description = "a"
+        # m.description = "b"
+        # self.assertEqual(m.description, ["a", "b"])
+
