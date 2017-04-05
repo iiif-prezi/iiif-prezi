@@ -600,8 +600,9 @@ class BaseMetadataObject(object):
                     if self._factory.add_lang:
                         nl.extend(self.langhash_to_jsonld(
                             {self._factory.default_lang: i}, html))
-                    elif value and value[0] == '<' and value[-1] == '>':
-                        self.test_html(i)
+                    elif value:
+                        if value[0] == '<' and value[-1] == '>':
+                            self.test_html(i)
                         nl.append(i)
                 elif type(i) == dict:
                     # {"en:"Something",fr":"Quelque Chose"}
@@ -609,6 +610,8 @@ class BaseMetadataObject(object):
                 else:
                     nl.append(i)
             value = nl
+
+        # XXX: Value should now be added to current?
         object.__setattr__(self, which, value)
 
     def set_label(self, value):
