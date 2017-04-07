@@ -216,11 +216,7 @@ class ManifestReader(object):
                         break
 
         # Black magic: 'sc:AnnotationList' --> parent.annotationList()
-        try:
-            cidx = typ.find(':')
-        except:
-            print typ
-            raise
+        cidx = typ.find(':')
         if cidx > -1:
             fn = typ[cidx + 1].lower() + typ[cidx + 2:]
         elif parentProperty == 'service':
