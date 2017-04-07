@@ -189,6 +189,6 @@ class TestAll(unittest.TestCase):
         fh = open('tests/everything_a_list_fixture.json')
         data = fh.read()
         fh.close()
-        js = json.loads(data)        
+        js = json.loads(data)
         mr = ManifestReader(js)
         doc = mr.read()
