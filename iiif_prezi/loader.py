@@ -205,8 +205,22 @@ class ManifestReader(object):
             else:
                 typ = ''
 
+        if type(typ) == list:
+            # :rolleyes:
+            if len(typ) == 1:
+                typ = typ[0]
+            else:
+                for t in typ:
+                    if t.startswith("sc:") or t.startswith("oa:"):
+                        typ = t
+                        break
+
         # Black magic: 'sc:AnnotationList' --> parent.annotationList()
-        cidx = typ.find(':')
+        try:
+            cidx = typ.find(':')
+        except:
+            print typ
+            raise
         if cidx > -1:
             fn = typ[cidx + 1].lower() + typ[cidx + 2:]
         elif parentProperty == 'service':
@@ -319,10 +333,13 @@ class ManifestReader(object):
                             # Use magic setter to ensure listiness
                             if k in what._structure_properties:
                                 # super meta black magic
-                                kls = what._structure_properties[
-                                    k]['subclass'].__name__.lower()
-                                addfn = getattr(what, "add_%s" % kls)
-                                addfn(sub)
+                                try:
+                                    kls = what._structure_properties[
+                                        k]['subclass'].__name__.lower()
+                                    addfn = getattr(what, "add_%s" % kls)
+                                    addfn(sub)
+                                except:
+                                    what._set_magic_resource(k, sub)
                             else:
                                 what._set_magic_resource(k, sub)
                         else:

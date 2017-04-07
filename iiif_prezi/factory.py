@@ -1160,6 +1160,8 @@ class Annotation(BaseMetadataObject):
             sr.style = cls
             self.resource = sr
 
+    def add_canvas(self, cvs):
+        self.on = cvs
 
 class SpecificResource(BaseMetadataObject):
     """Specific Resource in Presentation API."""

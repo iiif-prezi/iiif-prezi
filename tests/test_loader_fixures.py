@@ -184,3 +184,11 @@ class TestAll(unittest.TestCase):
         js = json.loads(data)
         mr = ManifestReader(js)
         doc = mr.read()
+
+    def test07_every_value_its_list(self):
+        fh = open('tests/everything_a_list_fixture.json')
+        data = fh.read()
+        fh.close()
+        js = json.loads(data)        
+        mr = ManifestReader(js)
+        doc = mr.read()
