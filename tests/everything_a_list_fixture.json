@@ -1,0 +1,166 @@
+{
+    "@context": [
+        "http://iiif.io/api/presentation/2/context.json"
+    ],
+    "@id": "http://example.org/iiif/book1/manifest",
+    "@type": [
+        "sc:Manifest"
+    ],
+    "attribution": [
+        "Provided by Example Organization"
+    ],
+    "description": [
+        "A longer description of this example book. It should give some real information."
+    ],
+    "label": [
+        "Book 1"
+    ],
+    "license": [
+        "http://example.org/license.html"
+    ],
+    "logo": [
+        "http://example.org/logo.jpg"
+    ],
+    "metadata": [
+        {
+            "label": "Author",
+            "value": "Anne Author"
+        },
+        {
+            "label": "Published",
+            "value": [
+                {
+                    "@language": "en",
+                    "@value": "Paris, circa 1400"
+                },
+                {
+                    "@language": "fr",
+                    "@value": "Paris, environ 14eme siecle"
+                }
+            ]
+        }
+    ],
+    "navDate": "1856-01-01T00:00:00Z",
+    "related": [
+        {
+            "@id": "http://example/related/other.pdf",
+            "format": "application/pdf",
+            "label": "A Related Document"
+        }
+    ],
+    "rendering": [
+        {
+            "@id": "http://example.org/iiif/book1.pdf",
+            "format": "application/pdf",
+            "label": "Download as PDF"
+        }
+    ],
+    "seeAlso": [
+        {
+            "@id": "http://example.org/library/catalog/book1.marc",
+            "format": "application/marc",
+            "profile": "http://example.org/profiles/marc21"
+        }
+    ],
+    "sequences": [
+        {
+            "@id": "http://example.org/iiif/book1/sequence/normal",
+            "@type": [
+                "sc:Sequence"
+            ],
+            "canvases": [
+                {
+                    "@id": "http://example.org/iiif/book1/canvas/p1",
+                    "@type": [
+                        "sc:Canvas"
+                    ],
+                    "height": 1000,
+                    "images": [
+                        {
+                            "@type": [
+                                "oa:Annotation"
+                            ],
+                            "motivation": [
+                                "sc:painting"
+                            ],
+                            "on": [
+                                "http://example.org/iiif/book1/canvas/p1"
+                            ],
+                            "resource": [
+                                {
+                                    "@id": "http://example.org/iiif/book1/res/page1.jpg",
+                                    "@type": [
+                                        "dctypes:Image"
+                                    ],
+                                    "format": "image/jpeg",
+                                    "height": 2000,
+                                    "service": [
+                                        {
+                                            "@context": "http://iiif.io/api/image/2/context.json",
+                                            "@id": "http://example.org/images/book1-page1",
+                                            "profile": "http://iiif.io/api/image/2/level1.json"
+                                        }
+                                    ],
+                                    "width": 1500
+                                }
+                            ]
+                        }
+                    ],
+                    "label": "p. 1",
+                    "otherContent": [
+                        {
+                            "@id": "http://example.org/iiif/book1/list/p1",
+                            "@type": "sc:AnnotationList",
+                            "within": [
+                                {
+                                    "@id": "http://example.org/iiif/book1/layer/l1",
+                                    "@type": [
+                                        "sc:Layer"
+                                    ],
+                                    "label": [
+                                        "Example Layer"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "width": 750
+                }
+            ],
+            "label": [
+                "Current Page Order"
+            ],
+            "viewingDirection": "left-to-right",
+            "viewingHint": [
+                "paged"
+            ]
+        }
+    ],
+    "service": [
+        {
+            "@context": "http://example.org/ns/jsonld/context.json",
+            "@id": "http://example.org/service/example",
+            "profile": "http://example.org/docs/example-service.html"
+        }
+    ],
+    "structures": [
+        {
+            "@id": "http://example.org/iiif/book1/range/r1",
+            "@type": "sc:Range",
+            "canvases": [
+                "http://example.org/iiif/book1/canvas/p1"
+            ],
+            "label": "Introduction"
+        }
+    ],
+    "thumbnail": [
+        "http://example.org/thumbnail.jpg"
+    ],
+    "viewingDirection": "left-to-right",
+    "viewingHint": [
+        "continuous"
+    ],
+    "within": [
+        "http://example.org/collections/books/"
+    ]
+}
