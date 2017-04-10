@@ -539,7 +539,10 @@ class BaseMetadataObject(object):
                     l.append(v)
             else:
                 l.append(OrderedDict([("@value", v), ("@language", k)]))
-        return l
+        if len(l) == 1:
+            return l[0]
+        else:
+            return l
 
     def set_metadata(self, mdhash):
         """Set metadata property.
@@ -606,7 +609,7 @@ class BaseMetadataObject(object):
                         nl.append(i)
                 elif type(i) == dict:
                     # {"en:"Something",fr":"Quelque Chose"}
-                    nl.extend(self.langhash_to_jsonld(i, html))
+                    nl.append(self.langhash_to_jsonld(i, html))
                 else:
                     nl.append(i)
             value = nl

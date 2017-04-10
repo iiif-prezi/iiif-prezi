@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 import unittest
 
-from iiif_prezi.factory import ManifestFactory, ConfigurationError
+from iiif_prezi.factory import ManifestFactory, ConfigurationError, OrderedDict
 
 
 class TestAll(unittest.TestCase):
@@ -48,3 +48,11 @@ class TestAll(unittest.TestCase):
         m = mf.manifest('a manifest')
         m.description = ["a", "b"]
         self.assertEqual(m.description, ["a", "b"])
+
+        m.description = []
+        m.description = {"en": "fish"}
+        self.assertEqual(m.description, OrderedDict([('@value', 'fish'), ('@language', 'en')]))
+
+        m.description = []
+        m.description = ["bar", {"en": "fish"}]
+        self.assertEqual(m.description, ["bar", OrderedDict([('@value', 'fish'), ('@language', 'en')])])
