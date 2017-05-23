@@ -68,6 +68,4 @@ class TestAll(unittest.TestCase):
 
         child._embed = False
         js = parent.toJSON()
-        with self.assertRaises(KeyError):
-            js['collections'][0]['collections'][0]['label']
-
+        self.assertFalse(js['collections'][0].get('collections', False))

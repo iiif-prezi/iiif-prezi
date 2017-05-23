@@ -857,7 +857,7 @@ class Collection(BaseMetadataObject):
     _warn = ["description"]
     _viewing_hints = COLL_VIEWINGHINTS
     _extra_properties = ["navDate"]
-    _embed = False 
+    _embed = False
 
     collections = []
     manifests = []
@@ -892,7 +892,7 @@ class Collection(BaseMetadataObject):
         return mn
 
     def _should_be_minimal(self, what):
-        """Allow Collections to be embedded via a flag"""
+        """Allow Collections to be embedded via a flag."""
         if isinstance(what, Collection) and what._embed:
             return True
         return False
