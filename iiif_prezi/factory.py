@@ -746,7 +746,7 @@ class BaseMetadataObject(object):
         typ = sinfo.get('subclass', None)
         minimal = sinfo.get('minimal', False)
         if minimalOveride:
-            minimal = True
+            minimal = not minimal
         if type(instance) in STR_TYPES:
             # Just a URI
             return instance
@@ -857,6 +857,7 @@ class Collection(BaseMetadataObject):
     _warn = ["description"]
     _viewing_hints = COLL_VIEWINGHINTS
     _extra_properties = ["navDate"]
+    _embed = False 
 
     collections = []
     manifests = []
@@ -867,6 +868,7 @@ class Collection(BaseMetadataObject):
         super(Collection, self).__init__(*args, **kw)
         self.collections = []
         self.manifests = []
+        self._embed = False
 
     def add_collection(self, coll):
         """Add add_collection to this Collection."""
@@ -888,6 +890,12 @@ class Collection(BaseMetadataObject):
         self.add_manifest(mn)
         mn.within = self.id
         return mn
+
+    def _should_be_minimal(self, what):
+        """Allow Collections to be embedded via a flag"""
+        if isinstance(what, Collection) and what._embed:
+            return True
+        return False
 
 
 class Manifest(BaseMetadataObject):

@@ -56,3 +56,18 @@ class TestAll(unittest.TestCase):
         m.description = []
         m.description = ["bar", {"en": "fish"}]
         self.assertEqual(m.description, ["bar", OrderedDict([('@value', 'fish'), ('@language', 'en')])])
+
+    def test12_collection_embed_flag(self):
+        mf = ManifestFactory(mdbase="aa", imgbase="bb")
+        parent = mf.collection(label="parent")
+        child = parent.collection(label="child")
+        gchild = child.collection(label="grandchild")
+        child._embed = True
+        js = parent.toJSON()
+        self.assertEqual(js['collections'][0]['collections'][0]['label'], 'grandchild')
+
+        child._embed = False
+        js = parent.toJSON()
+        with self.assertRaises(KeyError):
+            js['collections'][0]['collections'][0]['label']
+
