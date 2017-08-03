@@ -1,0 +1,746 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/manifest.json",
+  "@type": "sc:Manifest",
+  "label": "General correspondence: O",
+  "metadata": [
+    {
+      "label": "Contributors",
+      "value": "Szeemann, Harald"
+    },
+    {
+      "label": "Creation Date",
+      "value": "1960-1979"
+    },
+    {
+      "label": "Form/Genre",
+      "value": [
+        "Correspondence",
+        "Photographic prints",
+        "Mixed material"
+      ]
+    },
+    {
+      "label": "Physical Desc.",
+      "value": "19 images"
+    },
+    {
+      "label": "Subject",
+      "value": [
+        "Artists -- Correspondence",
+        "Museum curators -- Correspondence"
+      ]
+    },
+    {
+      "label": "ID/Acc. No.",
+      "value": [
+        "2011.M.30 (bx.273,f.3)",
+        "http://hdl.handle.net/10020/2011m30_11b8cfdb366608e3e908860153e1b693"
+      ]
+    },
+    {
+      "label": "Is Part Of",
+      "value": [
+        "Harald Szeemann papers. Series I. Project files (http://hdl.handle.net/10020/cat952268)",
+        "GRI Special Collections"
+      ]
+    },
+    {
+      "label": "Use Restrictions",
+      "value": "Digital images and files are provided for study purposes only. Copyright restrictions apply."
+    },
+    {
+      "label": "Access/Rights",
+      "value": "Access is available only to on-site readers and Getty staff."
+    }
+  ],
+  "description": "Swiss art curator Harald Szeemann (1933-2005) organized more than 150\n\t\t\t\t\t            exhibitions during a career that spanned almost five decades. An advocate of\n\t\t\t\t\t            contemporary movements such as conceptualism, land art, happenings, Fluxus and\n\t\t\t\t\t            performance, and of artists such as Joseph Beuys, Richard Serra, Cy Twombly and\n\t\t\t\t\t            Mario Merz, Szeemann developed a new form of exhibition-making that centered on\n\t\t\t\t\t            close collaborative relationships with artists and a sweeping global vision of\n\t\t\t\t\t            contemporary visual culture.",
+  "attribution": "The Getty Research Institute, Los Angeles.",
+  "license": "http://hdl.handle.net/10020/repro_perm",
+  "logo": "http://www.getty.edu/museum/media/graphics/web/logos/getty-logo.png",
+  "viewingHint": "individuals",
+  "sequences": [
+    {
+      "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/sequence/regular.json",
+      "@type": "sc:Sequence",
+      "label": "Regular Order",
+      "canvases": [
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292639.json",
+          "@type": "sc:Canvas",
+          "label": "Image 001",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292639_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292639_thumb/full/full/0/default.jpg"
+          },
+          "height": 3774,
+          "width": 2790,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292639/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 3774,
+                "width": 2790,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292639",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292639.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292640.json",
+          "@type": "sc:Canvas",
+          "label": "Image 002",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292640_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292640_thumb/full/full/0/default.jpg"
+          },
+          "height": 2682,
+          "width": 3714,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292640/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 2682,
+                "width": 3714,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292640",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292640.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292641.json",
+          "@type": "sc:Canvas",
+          "label": "Image 003",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292641_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292641_thumb/full/full/0/default.jpg"
+          },
+          "height": 7352,
+          "width": 5286,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292641/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7352,
+                "width": 5286,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292641",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292641.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292642.json",
+          "@type": "sc:Canvas",
+          "label": "Image 004",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292642_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292642_thumb/full/full/0/default.jpg"
+          },
+          "height": 7346,
+          "width": 5223,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292642/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7346,
+                "width": 5223,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292642",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292642.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292643.json",
+          "@type": "sc:Canvas",
+          "label": "Image 005",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292643_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292643_thumb/full/full/0/default.jpg"
+          },
+          "height": 7342,
+          "width": 5261,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292643/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7342,
+                "width": 5261,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292643",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292643.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292644.json",
+          "@type": "sc:Canvas",
+          "label": "Image 006",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292644_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292644_thumb/full/full/0/default.jpg"
+          },
+          "height": 7346,
+          "width": 5274,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292644/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7346,
+                "width": 5274,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292644",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292644.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292645.json",
+          "@type": "sc:Canvas",
+          "label": "Image 007",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292645_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292645_thumb/full/full/0/default.jpg"
+          },
+          "height": 7356,
+          "width": 5178,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292645/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7356,
+                "width": 5178,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292645",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292645.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292646.json",
+          "@type": "sc:Canvas",
+          "label": "Image 008",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292646_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292646_thumb/full/full/0/default.jpg"
+          },
+          "height": 6936,
+          "width": 5418,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292646/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 6936,
+                "width": 5418,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292646",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292646.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292647.json",
+          "@type": "sc:Canvas",
+          "label": "Image 009",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292647_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292647_thumb/full/full/0/default.jpg"
+          },
+          "height": 7383,
+          "width": 5274,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292647/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7383,
+                "width": 5274,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292647",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292647.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292648.json",
+          "@type": "sc:Canvas",
+          "label": "Image 010",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292648_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292648_thumb/full/full/0/default.jpg"
+          },
+          "height": 7336,
+          "width": 5214,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292648/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7336,
+                "width": 5214,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292648",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292648.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292649.json",
+          "@type": "sc:Canvas",
+          "label": "Image 011",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292649_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292649_thumb/full/full/0/default.jpg"
+          },
+          "height": 7332,
+          "width": 5202,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292649/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7332,
+                "width": 5202,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292649",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292649.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292650.json",
+          "@type": "sc:Canvas",
+          "label": "Image 012",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292650_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292650_thumb/full/full/0/default.jpg"
+          },
+          "height": 5526,
+          "width": 3630,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292650/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 5526,
+                "width": 3630,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292650",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292650.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292651.json",
+          "@type": "sc:Canvas",
+          "label": "Image 013",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292651_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292651_thumb/full/full/0/default.jpg"
+          },
+          "height": 7362,
+          "width": 3786,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292651/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7362,
+                "width": 3786,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292651",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292651.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292652.json",
+          "@type": "sc:Canvas",
+          "label": "Image 014",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292652_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292652_thumb/full/full/0/default.jpg"
+          },
+          "height": 7356,
+          "width": 3810,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292652/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7356,
+                "width": 3810,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292652",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292652.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292653.json",
+          "@type": "sc:Canvas",
+          "label": "Image 015",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292653_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292653_thumb/full/full/0/default.jpg"
+          },
+          "height": 7356,
+          "width": 5238,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292653/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7356,
+                "width": 5238,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292653",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292653.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292654.json",
+          "@type": "sc:Canvas",
+          "label": "Image 016",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292654_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292654_thumb/full/full/0/default.jpg"
+          },
+          "height": 6946,
+          "width": 5430,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292654/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 6946,
+                "width": 5430,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292654",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292654.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292655.json",
+          "@type": "sc:Canvas",
+          "label": "Image 017",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292655_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292655_thumb/full/full/0/default.jpg"
+          },
+          "height": 5538,
+          "width": 3654,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292655/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 5538,
+                "width": 3654,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292655",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292655.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292656.json",
+          "@type": "sc:Canvas",
+          "label": "Image 018",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292656_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292656_thumb/full/full/0/default.jpg"
+          },
+          "height": 7381,
+          "width": 3822,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292656/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7381,
+                "width": 3822,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292656",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292656.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292657.json",
+          "@type": "sc:Canvas",
+          "label": "Image 019",
+          "thumbnail": {
+            "service": {
+              "profile": "http://iiif.io/api/image/2/level1.json",
+              "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292657_thumb",
+              "@context": "http://iiif.io/api/image/2/context.json"
+            },
+            "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292657_thumb/full/full/0/default.jpg"
+          },
+          "height": 7332,
+          "width": 3798,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292657/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 7332,
+                "width": 3798,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://media.getty.edu/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693_FL2292657",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              },
+              "on": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292657.json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "@id": "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/range/range-11b8cfdb366608e3e908860153e1b693.json",
+      "@type": "sc:Range",
+      "label": "General correspondence: O",
+      "viewingHint": "top",
+      "canvases": [
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292639.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292640.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292641.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292642.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292643.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292644.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292645.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292646.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292647.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292648.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292649.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292650.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292651.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292652.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292653.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292654.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292655.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292656.json",
+        "http://media.getty.edu/data/iiif/research/archives/2011m30_11b8cfdb366608e3e908860153e1b693/canvas/canvas-FL2292657.json"
+      ]
+    }
+  ]
+}

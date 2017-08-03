@@ -142,7 +142,6 @@ class ManifestReader(object):
                     raise SerializationError("Data is not valid JSON", data)
 
         # Try to see if we're valid JSON-LD before further testing
-
         versions = self.getVersion(js)
         if self.require_version:
             factory = self.buildFactory(self.require_version)
@@ -199,7 +198,9 @@ class ManifestReader(object):
         try:
             typ = js['@type']
         except:
-            if parentProperty != 'service':
+            if parentProperty == 'thumbnail':
+                typ = "dctypes:Image"
+            elif parentProperty != 'service':
                 raise RequirementError(
                     'Every resource must have @type', parent)
             else:
