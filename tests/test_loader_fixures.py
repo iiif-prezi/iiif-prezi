@@ -10,10 +10,6 @@ import difflib
 import json
 
 
-class TestError(PresentationError):
-    pass
-
-
 def print_warnings(reader):
     warns = reader.get_warnings()
     if warns:
