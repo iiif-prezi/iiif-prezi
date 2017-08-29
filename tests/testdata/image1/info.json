@@ -1,0 +1,8 @@
+{
+    "@context": "http://iiif.io/api/image/2/context.json",
+    "profile": "http://iiif.io/api/image/2/level0.json",
+    "protocol": "http://iiif.io/api/image",
+    "@id": "image1",
+    "height": 4000,
+    "width": 3000
+}

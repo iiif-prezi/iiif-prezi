@@ -27,6 +27,14 @@ class TestAll(unittest.TestCase):
         mf = ManifestFactory()
         self.assertRaises(ConfigurationError, mf.set_debug, 'unkn')
 
+    def test09_set_hw_from_iiif(self):
+        mf = ManifestFactory()
+        mf.set_base_image_uri('file:tests/testdata')
+        img = mf.image('image1', iiif=True)
+        self.assertEqual(img.set_hw_from_iiif(), None)
+        self.assertEqual(img.width, 3000)
+        self.assertEqual(img.height, 4000)
+
     def test10_set_hw_from_file_image_magick(self):
         mf = ManifestFactory()
         self.assertNotEqual(mf.whichid, '')  # Expect to find ImageMagick
