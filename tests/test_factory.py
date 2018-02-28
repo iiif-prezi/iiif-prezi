@@ -27,6 +27,21 @@ class TestAll(unittest.TestCase):
         mf = ManifestFactory()
         self.assertRaises(ConfigurationError, mf.set_debug, 'unkn')
 
+    def test09_set_hw_from_iiif(self):
+        mf = ManifestFactory()
+        mf.set_base_image_uri('file:tests/testdata')
+        img = mf.image('image1', iiif=True)
+        self.assertEqual(img.set_hw_from_iiif(), None)
+        self.assertEqual(img.width, 3000)
+        self.assertEqual(img.height, 4000)
+        # Error cases
+        img._identifier = ""
+        self.assertRaises(ConfigurationError, img.set_hw_from_iiif)
+        img._identifier = "image-does-not-exist"
+        self.assertRaises(ConfigurationError, img.set_hw_from_iiif)
+        img._identifier = "image2_bad"
+        self.assertRaises(ConfigurationError, img.set_hw_from_iiif)
+
     def test10_set_hw_from_file_image_magick(self):
         mf = ManifestFactory()
         self.assertNotEqual(mf.whichid, '')  # Expect to find ImageMagick

@@ -1317,7 +1317,7 @@ class Image(ContentResource):
             else:
                 req = Request(requrl)
             fh = urlopen(req)
-            data = fh.read()
+            data = fh.read().decode('utf-8')
             fh.close()
         except:
             raise ConfigurationError(
