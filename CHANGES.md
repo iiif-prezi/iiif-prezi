@@ -3,6 +3,7 @@
 v0.2.9 2018-02-28
 
   * Fixed JSON read with python 3.3, 3.4
+  * Add python 3.6 to testing
 
 v0.2.8 2017-08-03
 
