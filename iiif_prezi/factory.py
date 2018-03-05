@@ -1,30 +1,22 @@
 """IIIF Presentation API Manifest Factory."""
 
 from __future__ import unicode_literals
+import json
 import os
 import sys
 import subprocess
+from collections import OrderedDict
 
-from .json_with_order import json, OrderedDict
 from .util import is_http_uri, STR_TYPES
-
-try:
-    subprocess.check_output  # should be OK in python2.7 up
-except:
-    # python2.6, see <http://python-future.org/standard_library_imports.html>
-    from future.standard_library import install_aliases
-    install_aliases()
 
 try:
     # python3
     from urllib.request import urlopen
     from urllib.request import Request
-    from urllib.parse import urlencode
 except ImportError:
     # fall back to python2
     from urllib2 import urlopen
     from urllib2 import Request
-    from urllib import urlencode
 
 try:
     from PIL import Image as pil_image

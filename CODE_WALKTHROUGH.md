@@ -6,9 +6,7 @@ A quick code walk through for how to build manifests using the factory.
 Requirements
 ------------
 
-In order to automatically determine the dimensions of local image files, you will need to have either ImageMagick or the Python Image Library installed.  ImageMagick attempts to use a command line rather than module approach, which may not work under Windows (untested).  Neither will work with JPG 2000 files out of the box.  Alternatively, if the image is served from a IIIF Image API service, the info.json response can be used.  The library does not work with Python 3.X, but has been tested in various environments with 2.6+
-
-For 2.6 and before, you must have the OrderedDict backport installed.  In Python 2.7 it is part of the base library.
+In order to automatically determine the dimensions of local image files, you will need to have either ImageMagick or the Python Image Library installed.  ImageMagick attempts to use a command line rather than module approach, which may not work under Windows (untested).  Neither will work with JPG 2000 files out of the box.  Alternatively, if the image is served from a IIIF Image API service, the info.json response can be used.  The library does not work with Python 3.X, but has been tested in various environments with 2.7 and 3.4+.
 
 You should have lxml installed, which is used to sanity check HTML values.  If it is not present, then the checks will just not be done.
 

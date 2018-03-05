@@ -1,7 +1,6 @@
 """Setup for IIIF Presentation API implementation."""
 from setuptools import setup, Command
 import os
-import sys
 # setuptools used instead of distutils.core so that
 # dependencies can be handled automatically
 
@@ -42,14 +41,12 @@ class Coverage(Command):
         os.system("coverage html")
         print("See htmlcov/index.html for details.")
 
+
 install_requires = [
     "lxml",
-    "Pillow>=3.2.0,<4.0.0",  # Pillow 4.0.0 drops python 2.6 support
+    "Pillow",
     "pyld",
 ]
-if (sys.version_info[0:2] < (2, 7)):
-    install_requires.append('ordereddict')
-    install_requires.append('future')
 
 setup(
     name='iiif-prezi',
@@ -64,9 +61,9 @@ setup(
                  "License :: OSI Approved :: Apache Software License",
                  "Operating System :: OS Independent",  # is this true? know Linux & OS X ok
                  "Programming Language :: Python",
-                 "Programming Language :: Python :: 2.6",
+                 "Programming Language :: Python :: 2",
                  "Programming Language :: Python :: 2.7",
-                 "Programming Language :: Python :: 3.3",
+                 "Programming Language :: Python :: 3",
                  "Programming Language :: Python :: 3.4",
                  "Programming Language :: Python :: 3.5",
                  "Programming Language :: Python :: 3.6",
