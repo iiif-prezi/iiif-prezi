@@ -2,10 +2,11 @@
 
 from __future__ import unicode_literals
 import os
+import json
+from collections import OrderedDict
 
 from .factory import ManifestFactory, Service
-from .factory import PresentationError, MetadataError, ConfigurationError, StructuralError, RequirementError, DataError
-from .json_with_order import json, OrderedDict
+from .factory import PresentationError, ConfigurationError, StructuralError, RequirementError, DataError
 from .util import is_http_uri, STR_TYPES
 
 try:  # python2
@@ -46,6 +47,7 @@ def load_document_local(url):
     fh.close()
     doc['document'] = data
     return doc
+
 
 if jsonld:
     jsonld.set_document_loader(load_document_local)
