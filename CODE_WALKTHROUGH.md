@@ -123,7 +123,7 @@ And the same for add_collection, add_annotation, and so forth.
 Note that Ranges do not allow the creation of Canvases, nor Layers the creation of AnnotationLists.  These are created from Sequences and the AnnotationLists, respectively.  Existing Canvases must then be added to a Range with add_canvas(), that takes an additional argument of `frag` with the fragment to add to the end of the canvas's identifier.
 
 ```python
-r = manifest.range(ident="range1", "Chapter 1")
+r = manifest.range(ident="range1", label="Chapter 1")
 c = sequence.canvas(ident="canvas1", label="Page 1")
 r.add_canvas(c, frag="xywh=100,100,640,480")
 ```
