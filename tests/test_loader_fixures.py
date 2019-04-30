@@ -156,6 +156,8 @@ class TestAll(unittest.TestCase):
         # self.assertRaises( DataError, error, 49 ) #FIXME/zimeon py2-py3 diff
         self.assertRaises(PresentationError, error, 50)  # was DataError
         self.assertRaises(RequirementError, error, 51)
+        self.assertRaises(RequirementError, error, 52)
+        # even though the label key exists, it must have a truthy value
 
     def test05_multipleContexts(self):
         fh = open('tests/multiple_contexts_fixture.json')
@@ -188,3 +190,7 @@ class TestAll(unittest.TestCase):
         js = json.loads(data)
         mr = ManifestReader(js)
         doc = mr.read()
+
+    def test52_canvas_id_in_error_message(self):
+        err_msg = "^Resource type 'sc:Canvas' with id '.*' requires 'label' to be set$"
+        self.assertRaisesRegexp(RequirementError, err_msg, error, 52)

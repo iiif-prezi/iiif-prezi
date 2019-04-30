@@ -672,12 +672,14 @@ class BaseMetadataObject(object):
             del d['context']
         for e in self._required:
             if e not in d:
+                # if the current object has an id, include it in the error message
+                id_msg = " with id '%s'" % self.id if self.id else ""
+                err_msg = "Resource type '%s'%s requires '%s' to be set" % (self._type, id_msg, e)
+
                 if e in self._structure_properties:
-                    raise StructuralError(
-                        "Resource type '%s' requires '%s' to be set" % (self._type, e), self)
+                    raise StructuralError(err_msg, self)
                 else:
-                    raise RequirementError(
-                        "Resource type '%s' requires '%s' to be set" % (self._type, e), self)
+                    raise RequirementError(err_msg, self)
         debug = self._factory.debug_level
         if debug.find("warn") > -1:
             for e in self._warn:
