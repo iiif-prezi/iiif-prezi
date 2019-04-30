@@ -11,7 +11,7 @@
         {
           "@id": "http://iiif.io/api/presentation/2.0/example/fixtures/canvas/1/c1.json", 
           "@type": "sc:Canvas", 
-          "label": "", 
+          "label": "good label", 
           "height": 1800, 
           "width": 1200, 
           "images": [
@@ -25,6 +25,26 @@
                 "width": 1200
               }, 
               "on": "http://iiif.io/api/presentation/2.0/example/fixtures/canvas/1/c1.json"
+            }
+          ]
+        },
+        {
+          "@id": "http://iiif.io/api/presentation/2.0/example/fixtures/canvas/2/c2.json", 
+          "@type": "sc:Canvas", 
+          "label": "", 
+          "height": 1800, 
+          "width": 1200, 
+          "images": [
+            {
+              "@type": "oa:Annotation", 
+              "motivation": "sc:painting", 
+              "resource": {
+                "@id": "http://iiif.io/api/presentation/2.0/example/fixtures/resources/page2-full.png", 
+                "@type": "dctypes:Image", 
+                "height": 1800, 
+                "width": 1200
+              }, 
+              "on": "http://iiif.io/api/presentation/2.0/example/fixtures/canvas/2/c2.json"
             }
           ]
         }
