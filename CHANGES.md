@@ -2,7 +2,8 @@
 
 v0.3.0 2019-10-17
 
- * Drop support for end-of-life Python 2.6 and 3.3
+ * Drop support for end-of-life Python 2.6, 3.3 and 3.4
+ * Add Python 3.7 to tests
  * Unpin Pillow to allow recent versions (expecting 6.0.0 or up)
  * Correction to example (thanks @mamico)
 
