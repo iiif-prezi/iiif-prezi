@@ -44,8 +44,8 @@ class Coverage(Command):
 
 install_requires = [
     "lxml",
-    "Pillow",
-    "pyld",
+    "Pillow<7.0.0",  # Pillow 7.x drops Python2.7
+    "pyld<2.0.0",  # Changes required for 2.x, but that drops Python<3.6
 ]
 
 setup(
@@ -64,9 +64,10 @@ setup(
                  "Programming Language :: Python :: 2",
                  "Programming Language :: Python :: 2.7",
                  "Programming Language :: Python :: 3",
-                 "Programming Language :: Python :: 3.4",
                  "Programming Language :: Python :: 3.5",
                  "Programming Language :: Python :: 3.6",
+                 "Programming Language :: Python :: 3.7",
+                 "Programming Language :: Python :: 3.8",
                  "Topic :: Internet :: WWW/HTTP",
                  "Topic :: Multimedia :: Graphics :: Graphics Conversion",
                  "Topic :: Software Development :: Libraries :: Python Modules",
