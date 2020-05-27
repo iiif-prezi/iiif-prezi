@@ -28,13 +28,14 @@ class SerializationError(PresentationError):
     pass
 
 
-def load_document_local(url):
+def load_document_local(url, **options):
     """Load local copy of context document with given url.
 
     Returns dict with three elements 'contextUrl'=None,
     'documentUrl'=None and 'document' set to data read
     """
-    doc = {'contextUrl': None,
+    doc = {'contentType': 'application/json',
+           'contextUrl': None,
            'documentUrl': None,
            'document': ''}
     contexts_dir = os.path.join(os.path.dirname(__file__), 'contexts')
