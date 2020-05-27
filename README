@@ -20,15 +20,15 @@ Installation
 ------------
 
 The library, tests and examples are designed to work with Python 2.7,
-3.4, 3.5 and 3.6.
+3.5, 3.6 and 3.7.
 
 **Automatic installation from PyPI**
 
 The *iiif-prezi* library code and scripts are listed in `PyPI
 <http://pypi.python.org/pypi/iiif-prezi>`_ and can be installed with 
-``pip`` or ``easy_install``, e.g.:: 
+``pip``, e.g.::
 
-    easy_install iiif-prezi
+    pip install iiif-prezi
 
 **Manual installation from github**
 
