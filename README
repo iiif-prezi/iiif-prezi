@@ -16,6 +16,9 @@ of the `International Image Interoperability Framework
 `Presentation API 2.0
 <http://iiif.io/api/presentation/2.0/>`_ (and earlier versions).
 
+**If you want to (and you should) implement version 3.x of the Presentation API, then instead use [iiif-prezi3](https://github.com/iiif-prezi/iiif-prezi3)**
+
+
 Installation
 ------------
 
