@@ -156,6 +156,7 @@ class TestAll(unittest.TestCase):
         # self.assertRaises( DataError, error, 49 ) #FIXME/zimeon py2-py3 diff
         self.assertRaises(PresentationError, error, 50)  # was DataError
         self.assertRaises(RequirementError, error, 51)
+        self.assertRaises(RequirementError, error, 52)
 
     def test05_multipleContexts(self):
         fh = open('tests/multiple_contexts_fixture.json')
@@ -188,3 +189,10 @@ class TestAll(unittest.TestCase):
         js = json.loads(data)
         mr = ManifestReader(js)
         doc = mr.read()
+
+    def test52_canvas_id_in_error_message(self):
+        # even though the label key exists in manifest 51, it must have a truthy value
+        # in this case it has a value of empty string ''
+        err_id = "http://iiif.io/api/presentation/2.0/example/fixtures/canvas/2/c2.json"
+        err_msg = "^Resource type 'sc:Canvas' with id '%s' requires 'label' to be set$" % err_id
+        self.assertRaisesRegexp(RequirementError, err_msg, error, 52)
